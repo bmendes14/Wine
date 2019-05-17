@@ -18,7 +18,7 @@ create table Vinhos.Users(
     DataNascimento          date,
     Pass                    validname,
     Salt                    validname,
-    NIF                     varchar(8),
+    NIF                     varchar(8) not null,
 	primary key(NIF),
 );
 --drop table Vinhos.Owner;
@@ -59,8 +59,7 @@ create table Vinhos.Quinta(
     Telefone                varchar(9) not null,
     TamanhoProducao         int,
     Descricao               VARCHAR(60),
-    VinhoId                 validint,
-    DerivadoId              validint,
+    DerivadoId              int ,
     primary key(Telefone),
     foreign key (VinhoId) references Vinhos.Vinho(ID)  on delete cascade,
     foreign key (DerivadoId) references Vinhos.Derivados(ID)  on delete cascade,
@@ -96,10 +95,9 @@ create table Vinhos.Regiao(
     Clima             validname,
     Nome              validname,
     Codigo            validint,
-    VinhoId           validint,
+    Id                validint,
     QuintaID          varchar(9) not null,
-    primary key(codigo),
-    foreign key (VinhoId) references Vinhos.Vinho(ID) ,
+    primary key(Id),
     foreign key (QuintaID) references Vinhos.Quinta(Telefone)  on delete cascade, 
 );
 
@@ -148,6 +146,20 @@ create table Vinhos.Distribui(
     DistribuiID        validint,
     foreign key (DistribuiID) references Vinhos.Distribuidor(ID) on delete cascade,
     foreign key (QuintaID) references Vinhos.Quinta(Telefone) on delete cascade, 
+);
+
+CREATE TABLE Vinhos.Existe(
+     VinhoId            validint,
+     QuintaID           varchar(9) not null,
+     foreign key (VinhoId) references Vinhos.Vinho(ID)  on delete cascade,
+     foreign key (QuintaID) references Vinhos.Quinta(Telefone) on delete cascade, 
+);
+CREATE TABLE Vinhos.Existe(
+     VinhoId            validint,
+     RegiaoId                validint,
+     foreign key (VinhoId) references Vinhos.Vinho(ID)  on delete cascade,
+     foreign key (RegiaoId) references Vinhos.Regiao(Id) on delete cascade,
+
 );
 
 --insert into Vinhos.Users();
