@@ -1,3 +1,4 @@
+
 -- Produtores
 
 NOMEVINHO BACELO NOVO BRANCO 2015
@@ -128,6 +129,7 @@ ENÓLOGOS Anselmo Mendes, Francisco
 Marques Leandro
 Preco 7,00€
 
+
 NOMEVINHO CASA DE PAÇOS SUPERIOR 2015
 PRODUTOR Quinta de Paços
 DENOMINAÇÃO DE ORIGEM Vinho Reg. Minho
@@ -149,7 +151,6 @@ LONGEVIDADE 1 a 2 anos
 SERVIÇO A 9/10ºC com mariscos e peixes.
 ENÓLOGO Rui Walter Cunha
 Preco 7,75€
-
 
 NOMEVINHO ALVARINHO CONTACTO 2016
 PRODUTOR Anselmo Mendes Vinhos
@@ -174,7 +175,6 @@ queijos e pratos de aves.
 ENÓLOGO Anselmo Mendes
 Preco 9,50€
 
-
 NOMEVINHO CASCAS 2016
 PRODUTOR Casca Wines
 DENOMINAÇÃO DE ORIGEM DOC Douro
@@ -196,6 +196,8 @@ aves de capoeira, massas condimentadas
 e queijos suaves.
 ENÓLOGO Hélder Cunha
 Preco 4,20€
+
+
 
 
 NOMEVINHO ZOM RESERVA 2015
