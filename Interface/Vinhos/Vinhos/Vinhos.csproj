@@ -137,5 +137,11 @@
   <ItemGroup>
     <None Include="Resources\vinhaça.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5a2dd43f60fd27.4999223615129528953973.png" />
+    <None Include="Resources\farm-landscape-vector-illustration-5a2dd43f71fde5.8367673215129528954669.jpg" />
+    <None Include="Resources\wine-landscape-clipart-81.jpg" />
+    <Content Include="wine-landscape-clipart-8.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -26,3 +26,19 @@ C:\Users\bmend\OneDrive\Ambiente de Trabalho\faculdade\4ano\2semestre\Bd\Wine\In
 C:\Users\bmend\OneDrive\Ambiente de Trabalho\faculdade\4ano\2semestre\Bd\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form5.resources
 C:\Users\bmend\OneDrive\Ambiente de Trabalho\faculdade\4ano\2semestre\Bd\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form6.resources
 C:\Users\bmend\OneDrive\Ambiente de Trabalho\faculdade\4ano\2semestre\Bd\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form7.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\bin\Debug\Vinhos.exe.config
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\bin\Debug\Vinhos.exe
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\bin\Debug\Vinhos.pdb
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.csprojAssemblyReference.cache
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form1.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form2.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form3.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form4.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form5.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form6.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form7.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Properties.Resources.resources
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.csproj.GenerateResource.cache
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.csproj.CoreCompileInputs.cache
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.exe
+C:\Users\Staples\Desktop\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.pdb

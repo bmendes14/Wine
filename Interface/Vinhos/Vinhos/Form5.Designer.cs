@@ -31,11 +31,11 @@
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox6
@@ -70,19 +70,6 @@
             this.richTextBox2.TabIndex = 18;
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImage = global::Vinhos.Properties.Resources.vinhaça;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(42, 163);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(159, 246);
-            this.button4.TabIndex = 19;
-            this.button4.UseVisualStyleBackColor = false;
             // 
             // richTextBox7
             // 
@@ -124,17 +111,30 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackgroundImage = global::Vinhos.Properties.Resources._5a2dd43f60fd27_4999223615129528953973;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(3, 108);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(228, 237);
+            this.button4.TabIndex = 19;
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.richTextBox7);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.richTextBox6);
             this.Name = "Form5";

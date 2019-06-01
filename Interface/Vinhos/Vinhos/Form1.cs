@@ -15,9 +15,10 @@ namespace Vinhos
 
     public partial class Form1 : Form
     {
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
-        int i = 0;
+        int i,x,q = 0;
+        bool done = false;
 
         public Form1()
         {
@@ -27,54 +28,168 @@ namespace Vinhos
 
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
-            cn = new SqlConnection(sa);
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "exec Vinhos.CountWines";
-            command.Connection = cn;
-            cn.Open();
-            try
-            {
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
+            if (!done) {
+                done = true;
+                cn = new SqlConnection(sa);
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "exec Vinhos.CountWines";
+                command.Connection = cn;
+                cn.Open();
+                try
                 {
-                    while (reader.Read())
-                    { 
-                        Random r = new Random();
-                        i = r.Next(0,reader.GetInt32(0));
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to load");
-            }
-
-            command.CommandText = "exec Vinhos.getRandom @ID";
-            command.Parameters.Clear();
-            command.Parameters.Add("@ID", SqlDbType.Int);
-            command.Parameters["@ID"].Value = i;
-            command.Connection = cn;
-            try
-            {
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        richTextBox2.Text = reader.GetString(0);
+                        while (reader.Read())
+                        { 
+                            Random r = new Random();
+                            i = r.Next(0,reader.GetInt32(0));
+                            x = i;
+                            while (i == x)
+                            {
+                                x = r.Next(0, reader.GetInt32(0));
+                            }
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+
+                command.CommandText = "exec Vinhos.getRandom @ID";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = i;
+                command.Connection = cn;
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            richTextBox2.Text = reader.GetString(0);
+                            richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = x;
+                command.Connection = cn;
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            richTextBox1.Text = reader.GetString(0);
+                            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
+
+
+
+                cn = new SqlConnection(sa);
+                command = new SqlCommand();
+                command.CommandText = "exec Vinhos.CountQuintas";
+                command.Connection = cn;
+                cn.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Random r = new Random();
+                            q = r.Next(0, reader.GetInt32(0));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+
+
+                command.CommandText = "exec Vinhos.QuintaInfo @ID";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = q;
+                command.Connection = cn;
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            richTextBox3.Text = reader.GetString(0);
+                            richTextBox3.SelectionAlignment = HorizontalAlignment.Center;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
+
+
+                buttonsChange(i, x,q);
+             }
+        }
+
+        private void buttonsChange (int x, int y, int z)
+        {
+            button2.Click += (sender, args) =>
             {
-                throw new Exception("Failed to load");
-            }
-            finally
+                Form3 form = new Form3(x);
+                form.Location = this.Location;
+                form.StartPosition = FormStartPosition.Manual;
+                form.FormClosing += delegate { this.Show(); };
+                form.Show();
+                this.Hide();
+            };
+            button4.Click += (sender, args) =>
             {
-                cn.Close();
-            }
+                Form3 form = new Form3(y);
+                form.Location = this.Location;
+                form.StartPosition = FormStartPosition.Manual;
+                form.FormClosing += delegate { this.Show(); };
+                form.Show();
+                this.Hide();
+            };
+
+            button5.Click += (sender, args) =>
+            {
+                Form5 form = new Form5(z);
+                form.Location = this.Location;
+                form.StartPosition = FormStartPosition.Manual;
+                form.FormClosing += delegate { this.Show(); };
+                form.Show();
+                this.Hide();
+            };
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
@@ -131,6 +246,46 @@ namespace Vinhos
             form.FormClosing += delegate { this.Show(); };
             form.Show();
             this.Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
