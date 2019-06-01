@@ -207,6 +207,15 @@ Select Vinhos.Vinho.Nome from Vinhos.Vinho where Vinhos.Vinho.ID = @ID
 go
 
 --################################################
+-- Get number of Quintas in our database
+--################################################
+go 
+create Procedure Vinhos.CountQuintas
+as
+Select count(*) from Vinhos.Quinta;
+go
+
+--################################################
 -- Get all info from Quintas
 --################################################
 GO
@@ -252,6 +261,16 @@ select * from Vinhos.Regiao where Vinhos.Regiao.ID=@ID;
 go
 
 --exec Vinhos.RegiaoInfo 1;
+
+
+--################################################
+-- Get all info from Owner
+--################################################
+GO
+CREATE PROCEDURE Vinhos.OwnerInfo(@ID INT)
+as
+select * from Vinhos.Owner where Vinhos.Owner.ID=@ID;
+go
 
 --################################################
 -- Do filters for castas

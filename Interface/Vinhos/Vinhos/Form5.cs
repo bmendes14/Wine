@@ -106,12 +106,22 @@ namespace Vinhos
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form7 form = new Form7(regiao);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Show(); };
+            form.Show();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Form8 form = new Form8(owner);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Show(); };
+            form.Show();
+            this.Hide();
         }
     }
 }
