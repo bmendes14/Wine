@@ -30,13 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-<<<<<<< HEAD
-<<<<<<< HEAD
-            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
-=======
->>>>>>> dffa176ad83801d9be144bcf27043156aebbc2a6
-=======
->>>>>>> dffa176ad83801d9be144bcf27043156aebbc2a6
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,8 +53,7 @@
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // richTextBox1
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.DarkGray;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -74,10 +66,6 @@
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged_1);
             // 
             // richTextBox5
-=======
->>>>>>> dffa176ad83801d9be144bcf27043156aebbc2a6
-=======
->>>>>>> dffa176ad83801d9be144bcf27043156aebbc2a6
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.DarkGray;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
