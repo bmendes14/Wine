@@ -11,78 +11,57 @@ using System.Windows.Forms;
 
 namespace Vinhos
 {
-
-
-    public partial class Form2 : Form
+    public partial class Form6 : Form
     {
         private String s = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
-
-        public Form2()
+        public Form6()
         {
             InitializeComponent();
-
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void Form6_Load(object sender, EventArgs e)
         {
             cn = new SqlConnection(s);
-        
+
         }
 
         Boolean f = true;
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            String sql = "exec Vinhos.WineName";
+            String sql = "exec Vinhos.RegiaoName";
             int x = 50;
             int y = 30;
             cn.Close();
             cn.Open();
             if (f)
-           {
+            {
                 using (SqlCommand command = new SqlCommand(sql, cn))
                 {
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                       
-                        addTemplate(new Point(x, y), reader.GetString(0),reader.GetInt32(1));
-                        if (x == 458)
+                        while (reader.Read())
                         {
-                            x = 50;
-                            y = y + 222;
-                        }
-                        else
-                        {
-                            x = x + 204;
-                        }
 
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+
+                        }
                     }
                 }
+
+                f = false;
             }
-
-           f = false;
         }
-    }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
         private void addTemplate(Point pp, String wine, int number)
         {
 
@@ -102,7 +81,7 @@ namespace Vinhos
 
             b.Click += (sender, args) =>
             {
-                Form3 form = new Form3(number);
+                Form7 form = new Form7(number);
                 form.Location = this.Location;
                 form.StartPosition = FormStartPosition.Manual;
                 form.FormClosing += delegate { this.Show(); };
@@ -120,10 +99,14 @@ namespace Vinhos
             t.Size = new Size(115, 59);
             t.Font = new Font("Arial", 8, FontStyle.Regular);
             t.WordWrap = true;
-            String s = aux[0] + ' ' + aux[1];
+            String s = aux[0];
+            if (aux.Length >= 2)
+            {
+               s = aux[0] + ' ' + aux[1];
+            }
             String s2 = "";
 
-            for(int i = 2; i < aux.Length; i++)
+            for (int i = 2; i < aux.Length; i++)
             {
                 s2 = s2 + " " + aux[i];
 
@@ -135,33 +118,23 @@ namespace Vinhos
 
 
             p.BackColor = Color.Gray;
-             p.Location=pp;
-             p.BorderStyle = BorderStyle.Fixed3D;
-             p.Size = new Size(129, 185);
+            p.Location = pp;
+            p.BorderStyle = BorderStyle.Fixed3D;
+            p.Size = new Size(129, 185);
 
 
-             p.Controls.Add(b);
-             p.Controls.Add(t);
+            p.Controls.Add(b);
+            p.Controls.Add(t);
 
 
-            panel3.Controls.Add(p);
-            
+            panel2.Controls.Add(p);
 
 
-        }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
+
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            panel3.Controls.Clear();
-        }
     }
 }

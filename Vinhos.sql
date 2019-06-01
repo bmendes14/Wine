@@ -155,6 +155,129 @@ create table Vinhos.Distribui(
     foreign key (DistribuiID) references Vinhos.Distribuidor(ID) on delete cascade,
 );
 
+--################################################
+--              Procedures
+--################################################
+-- Get all Names from Wines
+GO
+CREATE PROCEDURE Vinhos.WineList
+AS
+SELECT Nome FROM Vinhos.Vinho;
+go
+
+--exec Vinhos.WineList;
+--###############################################
+-- Get all the names, id of all  Wine 
+--###############################################
+GO
+CREATE PROCEDURE Vinhos.WineName
+AS
+SELECT Nome,ID FROM Vinhos.Vinho;
+go
+exec Vinhos.WineName
+
+--###############################################
+-- Get all the info from a determinated Wine ID
+--###############################################
+go 
+create Procedure Vinhos.WineCaracteristics (@ID int)
+as
+Select Vinhos.Vinho.*,Vinhos.Quinta.Nome, Vinhos.Regiao.Nome from ((Vinhos.Vinho join Vinhos.Quinta on Vinhos.Vinho.QuintaID = Vinhos.Quinta.ID) join Vinhos.Regiao on Vinhos.Vinho.RegiaoID = Vinhos.Regiao.ID ) where Vinhos.Vinho.ID = @ID ;
+go
+
+--declare @id int = 1;
+--print @id
+--exec Vinhos.WineCaracteristics @id;
+
+--################################################
+-- Get number of wines in our database
+--################################################
+go 
+create Procedure Vinhos.CountWines
+as
+Select count(*) from Vinhos.Vinho;
+go
+
+--################################################
+-- Get name of a determinated wine in our database
+--################################################
+create Procedure Vinhos.getRandom(@ID int)
+as 
+Select Vinhos.Vinho.Nome from Vinhos.Vinho where Vinhos.Vinho.ID = @ID
+go
+
+--################################################
+-- Get all info from Quintas
+--################################################
+GO
+CREATE PROCEDURE Vinhos.QuintaInfo(@ID int)
+as
+select Vinhos.Quinta.*,Vinhos.Regiao.Nome,Vinhos.Owner.Nome,Vinhos.Owner.ID from ((Vinhos.Quinta join Vinhos.Regiao on Vinhos.Quinta.RegiaoID=Vinhos.Regiao.ID) join Vinhos.OwnerShip on Vinhos.Quinta.ID = Vinhos.OwnerShip.Quinta_ID)
+join Vinhos.Owner on Vinhos.OwnerShip.Owner_ID = Vinhos.Owner.ID
+ where Vinhos.Quinta.ID=@ID;
+go
+
+-- exec Vinhos.QuintaInfo 'ID';
+
+--################################################
+-- Get all names and id from Quintas
+--################################################
+GO
+CREATE PROCEDURE Vinhos.QuintaName
+as
+select Nome,ID from Vinhos.Quinta;
+go
+
+--EXEC Vinhos.QuintaName;
+
+
+--################################################
+-- Get all names and id from Regiao
+--################################################
+GO
+CREATE PROCEDURE Vinhos.RegiaoName
+as
+select Nome,ID from Vinhos.Regiao;
+go
+
+--EXEC Vinhos.QuintaName;
+
+--################################################
+-- Get all info from Regiao
+--################################################
+GO
+CREATE PROCEDURE Vinhos.RegiaoInfo(@ID INT)
+as
+select * from Vinhos.Regiao where Vinhos.Regiao.ID=@ID;
+go
+
+--exec Vinhos.RegiaoInfo 1;
+
+--################################################
+-- Do filters for castas
+--################################################
+
+
+
+
+
+--################################################
+-- Delete wine
+--################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 insert into Vinhos.Users values
@@ -321,7 +444,7 @@ insert into Vinhos.VinhosAssociados VALUES
 (11116,	15);
 
 
-insert int Vinhos.Derivados VALUES
+insert into Vinhos.Derivados VALUES
 ('BACELO NOVO',	'Volume: 0,70L,Grau de álcool: 40º',1,1),
 ('aguaArdente',	'Volume: 0,70L,Grau de álcool: 40º',2,2);
 

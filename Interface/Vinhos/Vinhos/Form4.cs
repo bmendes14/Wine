@@ -2,87 +2,78 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
 
 namespace Vinhos
 {
-
-
-    public partial class Form2 : Form
+    public partial class Form4 : Form
     {
-        private String s = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
+        int i = 0;
+        private String nome;
+        private String Morada;
+        private int TamanhoProducao;
+        private String descricao;
+        private String telefone;
+        private int ID;
+        private int RegiaoID;
 
-        public Form2()
+
+
+        public Form4()
         {
             InitializeComponent();
-
         }
-
-        private void Form2_Load(object sender, EventArgs e)
+        private void Form4_Load(object sender, EventArgs e)
         {
-            cn = new SqlConnection(s);
-        
+            cn = new SqlConnection(sa);
+
         }
 
         Boolean f = true;
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            String sql = "exec Vinhos.WineName";
+            String sql = "exec Vinhos.QuintaName";
             int x = 50;
             int y = 30;
             cn.Close();
             cn.Open();
             if (f)
-           {
+            {
                 using (SqlCommand command = new SqlCommand(sql, cn))
                 {
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                       
-                        addTemplate(new Point(x, y), reader.GetString(0),reader.GetInt32(1));
-                        if (x == 458)
+                        while (reader.Read())
                         {
-                            x = 50;
-                            y = y + 222;
-                        }
-                        else
-                        {
-                            x = x + 204;
-                        }
 
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+
+                        }
                     }
                 }
+
+                f = false;
             }
-
-           f = false;
         }
-    }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
         private void addTemplate(Point pp, String wine, int number)
         {
 
@@ -102,7 +93,7 @@ namespace Vinhos
 
             b.Click += (sender, args) =>
             {
-                Form3 form = new Form3(number);
+                Form5 form = new Form5(number);
                 form.Location = this.Location;
                 form.StartPosition = FormStartPosition.Manual;
                 form.FormClosing += delegate { this.Show(); };
@@ -123,7 +114,7 @@ namespace Vinhos
             String s = aux[0] + ' ' + aux[1];
             String s2 = "";
 
-            for(int i = 2; i < aux.Length; i++)
+            for (int i = 2; i < aux.Length; i++)
             {
                 s2 = s2 + " " + aux[i];
 
@@ -135,21 +126,35 @@ namespace Vinhos
 
 
             p.BackColor = Color.Gray;
-             p.Location=pp;
-             p.BorderStyle = BorderStyle.Fixed3D;
-             p.Size = new Size(129, 185);
+            p.Location = pp;
+            p.BorderStyle = BorderStyle.Fixed3D;
+            p.Size = new Size(129, 185);
 
 
-             p.Controls.Add(b);
-             p.Controls.Add(t);
+            p.Controls.Add(b);
+            p.Controls.Add(t);
 
 
-            panel3.Controls.Add(p);
-            
+            panel1.Controls.Add(p);
+
 
 
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -161,7 +166,11 @@ namespace Vinhos
 
         private void button2_Click(object sender, EventArgs e)
         {
-            panel3.Controls.Clear();
+            panel1.Controls.Clear();
         }
+
+     
+
+        
     }
 }

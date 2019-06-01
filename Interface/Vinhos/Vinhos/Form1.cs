@@ -15,7 +15,7 @@ namespace Vinhos
 
     public partial class Form1 : Form
     {
-        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         int i = 0;
 
@@ -111,6 +111,26 @@ namespace Vinhos
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form4 form = new Form4();
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Show(); };
+            form.Show();
+            this.Hide();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Form6 form = new Form6();
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Show(); };
+            form.Show();
+            this.Hide();
         }
     }
 }
