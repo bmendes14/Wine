@@ -27,46 +27,6 @@ namespace Vinhos
 
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
-
-            //GET 2 random wine IDs
-            cn = new SqlConnection(sa);
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "exec Vinhos.CountWines";
-            command.Connection = cn;
-            cn.Open();
-            try
-            {
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    { 
-                        Random r = new Random();
-                        i = r.Next(0,reader.GetInt32(0));
-                        x = i;
-                        while (i == x)
-                        {
-                            x = r.Next(0, reader.GetInt32(0));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to load");
-            }
-
-            //GET first random wine
-            command.CommandText = "exec Vinhos.getRandom @ID";
-            command.Parameters.Clear();
-            command.Parameters.Add("@ID", SqlDbType.Int);
-            command.Parameters["@ID"].Value = i;
-            command.Connection = cn;
-            try
-            {
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-
             if (!done) {
                 done = true;
                 cn = new SqlConnection(sa);
@@ -158,7 +118,7 @@ namespace Vinhos
                         while (reader.Read())
                         {
                             Random r = new Random();
-                            q = r.Next(0, reader.GetInt32(0));
+                            q = r.Next(0, reader.GetInt32(0)-1);
                         }
                     }
                 }
@@ -202,109 +162,6 @@ namespace Vinhos
         private void buttonsChange (int x, int y, int z)
         {
             button2.Click += (sender, args) =>
-            {
-                throw new Exception("Failed to load");
-            }
-
-            //GET second random wine
-            command.Parameters.Clear();
-            command.Parameters.Add("@ID", SqlDbType.Int);
-            command.Parameters["@ID"].Value = x;
-            command.Connection = cn;
-            try
-            {
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        richTextBox1.Text = reader.GetString(0);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to load");
-            }
-            finally
-            {
-                cn.Close();
-            }
-
-             cn = new SqlConnection(sa);
-            command = new SqlCommand();
-            command.CommandText = "exec Vinhos.CountQuintas";
-            command.Connection = cn;
-            cn.Open();
-            try
-            {
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Random r = new Random();
-                        q = r.Next(0, reader.GetInt32(0));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to load");
-            }
-
-
-            command.CommandText = "exec Vinhos.QuintaInfo @ID";
-            command.Parameters.Clear();
-            command.Parameters.Add("@ID", SqlDbType.Int);
-            command.Parameters["@ID"].Value = q;
-            command.Connection = cn;
-            try
-            {
-                command.ExecuteNonQuery();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        richTextBox3.Text = reader.GetString(0);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to load");
-            }
-            finally
-            {
-                cn.Close();
-            }
-
-
-            buttonsChange(i, x,q);
-        }
-
-        //Change buttons 
-         private void buttonsChange (int x, int y, int z)
-        {
-            button2.Click += (sender, args) =>
-            {
-                Form3 form = new Form3(x);
-                form.Location = this.Location;
-                form.StartPosition = FormStartPosition.Manual;
-                form.FormClosing += delegate { this.Show(); };
-                form.Show();
-                this.Hide();
-            };
-            button4.Click += (sender, args) =>
-            {
-                Form3 form = new Form3(y);
-                form.Location = this.Location;
-                form.StartPosition = FormStartPosition.Manual;
-                form.FormClosing += delegate { this.Show(); };
-                form.Show();
-                this.Hide();
-            };
-            button5.Click += (sender, args) =>
             {
                 Form3 form = new Form3(x);
                 form.Location = this.Location;
