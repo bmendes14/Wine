@@ -31,15 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
@@ -50,6 +47,9 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -75,19 +75,6 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "Search...";
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(41, 170);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 168);
-            this.button2.TabIndex = 7;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.Gray;
@@ -111,6 +98,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(207, 354);
             this.panel1.TabIndex = 9;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // richTextBox2
             // 
@@ -123,19 +111,6 @@
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImage = global::Vinhos.Properties.Resources.vinhaça;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(41, 140);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(109, 168);
-            this.button4.TabIndex = 7;
-            this.button4.UseVisualStyleBackColor = false;
-            // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.Color.Silver;
@@ -147,6 +122,7 @@
             this.textBox3.Size = new System.Drawing.Size(109, 20);
             this.textBox3.TabIndex = 10;
             this.textBox3.Text = "Random Wine";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // panel2
             // 
@@ -169,19 +145,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(197, 92);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(41, 140);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(109, 168);
-            this.button5.TabIndex = 7;
-            this.button5.UseVisualStyleBackColor = false;
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // textBox6
             // 
@@ -193,7 +157,8 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(109, 20);
             this.textBox6.TabIndex = 10;
-            this.textBox6.Text = "Random Wine";
+            this.textBox6.Text = "Random Farm";
+            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // panel3
             // 
@@ -216,10 +181,11 @@
             this.richTextBox3.Size = new System.Drawing.Size(197, 92);
             this.richTextBox3.TabIndex = 18;
             this.richTextBox3.Text = "";
+            this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(132, 7);
+            this.button3.Location = new System.Drawing.Point(118, 7);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 0;
@@ -229,7 +195,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(216, 7);
+            this.button6.Location = new System.Drawing.Point(199, 7);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 1;
@@ -239,7 +205,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(297, 7);
+            this.button7.Location = new System.Drawing.Point(280, 7);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 2;
@@ -248,7 +214,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(438, 7);
+            this.button8.Location = new System.Drawing.Point(421, 8);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 3;
@@ -271,12 +237,12 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.DimGray;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.textBox8);
             this.panel4.Controls.Add(this.button8);
             this.panel4.Controls.Add(this.button7);
             this.panel4.Controls.Add(this.button6);
-            this.panel4.Controls.Add(this.button3);
             this.panel4.Location = new System.Drawing.Point(34, 12);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(515, 37);
@@ -285,13 +251,55 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(378, 7);
+            this.button9.Location = new System.Drawing.Point(361, 8);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(54, 23);
             this.button9.TabIndex = 12;
             this.button9.Text = "Região";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImage = global::Vinhos.Properties.Resources._5a2dd43f60fd27_4999223615129528953973;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(-16, 106);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(238, 202);
+            this.button5.TabIndex = 7;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackgroundImage = global::Vinhos.Properties.Resources.vinhaça;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(41, 140);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(109, 168);
+            this.button4.TabIndex = 7;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(41, 140);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(109, 168);
+            this.button2.TabIndex = 7;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 

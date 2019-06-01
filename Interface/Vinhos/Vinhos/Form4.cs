@@ -14,7 +14,7 @@ namespace Vinhos
 {
     public partial class Form4 : Form
     {
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         int i = 0;
         private String nome;
@@ -39,39 +39,45 @@ namespace Vinhos
 
         Boolean f = true;
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
+            
+            if (f)
+            {
+                normal();
+                f = false;
+            }
+        }
+
+        private void normal()
+        {
+            panel3.Controls.Clear();
             String sql = "exec Vinhos.QuintaName";
             int x = 50;
             int y = 30;
             cn.Close();
             cn.Open();
-            if (f)
+            using (SqlCommand command = new SqlCommand(sql, cn))
             {
-                using (SqlCommand command = new SqlCommand(sql, cn))
+
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+
+                        addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                        if (x == 458)
                         {
-
-                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
-                            if (x == 458)
-                            {
-                                x = 50;
-                                y = y + 222;
-                            }
-                            else
-                            {
-                                x = x + 204;
-                            }
-
+                            x = 50;
+                            y = y + 222;
                         }
+                        else
+                        {
+                            x = x + 204;
+                        }
+
                     }
                 }
-
-                f = false;
             }
         }
         private void addTemplate(Point pp, String wine, int number)
@@ -81,12 +87,12 @@ namespace Vinhos
             Button b = new Button();
             RichTextBox t = new RichTextBox();
 
-            b.Location = new Point(35, 13);
-            b.Size = new Size(58, 102);
+            b.Location = new Point(15, 5);
+            b.Size = new Size(100, 100);
             b.BackColor = Color.Transparent;
             b.FlatStyle = FlatStyle.Flat;
             b.FlatAppearance.BorderSize = 0;
-            b.BackgroundImage = Vinhos.Properties.Resources.vinhaça;
+            b.BackgroundImage = Vinhos.Properties.Resources._5a2dd43f60fd27_4999223615129528953973;
             b.ImageAlign = ContentAlignment.MiddleCenter;
             b.BackgroundImageLayout = ImageLayout.Zoom;
 
@@ -109,7 +115,7 @@ namespace Vinhos
             t.BorderStyle = BorderStyle.None;
             t.SelectionAlignment = HorizontalAlignment.Center;
             t.Size = new Size(115, 59);
-            t.Font = new Font("Arial", 8, FontStyle.Regular);
+            t.Font = new Font("Arial", 11, FontStyle.Regular);
             t.WordWrap = true;
             String s = aux[0] + ' ' + aux[1];
             String s2 = "";
@@ -135,42 +141,228 @@ namespace Vinhos
             p.Controls.Add(t);
 
 
-            panel1.Controls.Add(p);
+            panel3.Controls.Add(p);
 
 
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBox3.Checked)
+            {
+                panel3.Controls.Clear();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "exec Vinhos.Quinta1 @ID";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = 2;
+                command.Connection = cn;
+                int x = 50;
+                int y = 30;
+                cn.Close();
+                cn.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
 
+
+                checkBox2.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+
+            }
+            else
+            {
+                checkBox2.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+                normal();
+
+            }
         }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
+            
+            if (checkBox2.Checked)
+            {
+                panel3.Controls.Clear();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "exec Vinhos.Quinta1 @ID";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = 1;
+                command.Connection = cn;
+                int x = 50;
+                int y = 30;
+                cn.Close();
+                cn.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
 
+
+                checkBox3.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+
+            }
+            else
+            {
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+                normal();
+
+            }
+        }
+        private void checkBox4_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked)
+            {
+                panel3.Controls.Clear();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "exec Vinhos.Quinta1 @ID";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = 3;
+                command.Connection = cn;
+                int x = 50;
+                int y = 30;
+                cn.Close();
+                cn.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
+
+
+                checkBox3.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox5.Enabled = false;
+                checkBox6.Enabled = false;
+
+            }
+            else
+            {
+                checkBox3.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+                normal();
+
+            }
         }
 
+
+
+
+
+
+
+        // Never used
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        private void panel1_Paint(object sender, PaintEventArgs e) { }
         private void button1_Click(object sender, EventArgs e)
         {
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            panel1.Controls.Clear();
+
+        }
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
-     
-
-        
+    
     }
 }

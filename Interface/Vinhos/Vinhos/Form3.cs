@@ -14,7 +14,7 @@ namespace Vinhos
     public partial class Form3 : Form
     {
         int s;
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         private String nome;
         private int alccol;

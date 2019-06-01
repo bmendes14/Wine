@@ -63,9 +63,39 @@ namespace Vinhos.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5a2dd43f60fd27_4999223615129528953973 {
+            get {
+                object obj = ResourceManager.GetObject("5a2dd43f60fd27.4999223615129528953973", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap farm_landscape_vector_illustration_5a2dd43f71fde5_8367673215129528954669 {
+            get {
+                object obj = ResourceManager.GetObject("farm-landscape-vector-illustration-5a2dd43f71fde5.8367673215129528954669", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap vinhaça {
             get {
                 object obj = ResourceManager.GetObject("vinhaça", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wine_landscape_clipart_8 {
+            get {
+                object obj = ResourceManager.GetObject("wine-landscape-clipart-8", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
