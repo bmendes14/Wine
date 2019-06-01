@@ -42,8 +42,6 @@ namespace Vinhos
                     {
                         richTextBox2.Text = reader.GetString(2);
                         richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
-                        richTextBox4.SelectionAlignment = HorizontalAlignment.Center;
-                        richTextBox5.SelectionAlignment = HorizontalAlignment.Center;
                         richTextBox1.Text = "Solo: " + reader.GetString(0);
                         richTextBox3.Text = "Clima: " + reader.GetString(1);
                         richTextBox4.Text = "Codigo Posta: "+ reader.GetString(3);
