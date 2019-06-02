@@ -27,14 +27,15 @@ namespace Vinhos
         private void Form2_Load(object sender, EventArgs e)
         {
             cn = new SqlConnection(s);
-        
+
+           
         }
 
         Boolean f = true;
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-            String sql = "exec Vinhos.WineName";
+            String sql = "select * from Vinhos.WineName()";
             int x = 50;
             int y = 30;
             cn.Close();
@@ -120,18 +121,24 @@ namespace Vinhos
             t.Size = new Size(115, 59);
             t.Font = new Font("Arial", 8, FontStyle.Regular);
             t.WordWrap = true;
-            String s = aux[0] + ' ' + aux[1];
-            String s2 = "";
-
-            for(int i = 2; i < aux.Length; i++)
+            if (aux.Length == 1)
             {
-                s2 = s2 + " " + aux[i];
+                t.Text = aux[0];
+            }
+            else
+            {
+                String s = aux[0] + ' ' + aux[1];
+                String s2 = "";
+
+                for (int i = 2; i < aux.Length; i++)
+                {
+                    s2 = s2 + " " + aux[i];
+
+                }
+
+                t.Text = s + Environment.NewLine + s2;
 
             }
-
-            t.Text = s + Environment.NewLine + s2;
-
-
 
 
             p.BackColor = Color.Gray;
@@ -167,6 +174,16 @@ namespace Vinhos
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+                Form9 form = new Form9();
+                form.Location = this.Location;
+                form.StartPosition = FormStartPosition.Manual;
+                form.FormClosing += delegate { this.Show(); };
+                form.Show();
+                this.Hide();
         }
     }
 }

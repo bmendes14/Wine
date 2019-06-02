@@ -63,6 +63,26 @@ namespace Vinhos.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _03c8c134458037de51c64988ae9bdc46 {
+            get {
+                object obj = ResourceManager.GetObject("03c8c134458037de51c64988ae9bdc46", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _300 {
+            get {
+                object obj = ResourceManager.GetObject("300", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _5a2dd43f60fd27_4999223615129528953973 {
             get {
                 object obj = ResourceManager.GetObject("5a2dd43f60fd27.4999223615129528953973", resourceCulture);
