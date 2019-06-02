@@ -19,6 +19,7 @@ namespace Vinhos
         SqlConnection cn;
         int i,x,q = 0;
         bool done = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace Vinhos
                 done = true;
                 cn = new SqlConnection(sa);
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "exec Vinhos.CountWines";
+                command.CommandText = "select * from Vinhos.CountWines()";
                 command.Connection = cn;
                 cn.Open();
                 try
@@ -42,11 +43,11 @@ namespace Vinhos
                         while (reader.Read())
                         { 
                             Random r = new Random();
-                            i = r.Next(0,reader.GetInt32(0));
+                            i = r.Next(0,reader.GetInt32(0)-1);
                             x = i;
                             while (i == x)
                             {
-                                x = r.Next(0, reader.GetInt32(0));
+                                x = r.Next(0, reader.GetInt32(0)-1);
                             }
                         }
                     }
@@ -56,7 +57,7 @@ namespace Vinhos
                     throw new Exception("Failed to load");
                 }
 
-                command.CommandText = "exec Vinhos.getRandom @ID";
+                command.CommandText = "select * from Vinhos.getRandom(@ID)";
                 command.Parameters.Clear();
                 command.Parameters.Add("@ID", SqlDbType.Int);
                 command.Parameters["@ID"].Value = i;
@@ -107,7 +108,7 @@ namespace Vinhos
 
                 cn = new SqlConnection(sa);
                 command = new SqlCommand();
-                command.CommandText = "exec Vinhos.CountQuintas";
+                command.CommandText = "select * from Vinhos.CountQuintas()";
                 command.Connection = cn;
                 cn.Open();
                 try
@@ -128,7 +129,7 @@ namespace Vinhos
                 }
 
 
-                command.CommandText = "exec Vinhos.QuintaInfo @ID";
+                command.CommandText = "select * from Vinhos.getRandomQuinta(@ID) ";
                 command.Parameters.Clear();
                 command.Parameters.Add("@ID", SqlDbType.Int);
                 command.Parameters["@ID"].Value = q;

@@ -63,3 +63,5 @@ C:\Users\Staples\Desktop\Nova pasta (2)\Wine\Interface\Vinhos\Vinhos\obj\Debug\V
 C:\Users\Staples\Desktop\Nova pasta (2)\Wine\Interface\Vinhos\Vinhos\bin\Debug\Vinhos.exe.config
 C:\Users\Staples\Desktop\Nova pasta (2)\Wine\Interface\Vinhos\Vinhos\bin\Debug\Vinhos.exe
 C:\Users\Staples\Desktop\Nova pasta (2)\Wine\Interface\Vinhos\Vinhos\bin\Debug\Vinhos.pdb
+C:\Users\Staples\Desktop\Nova pasta (2)\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form9.resources
+C:\Users\Staples\Desktop\Nova pasta (2)\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form10.resources

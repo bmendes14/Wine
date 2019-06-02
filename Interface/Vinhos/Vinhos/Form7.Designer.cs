@@ -53,7 +53,6 @@
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // richTextBox1
-
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.DarkGray;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -64,17 +63,6 @@
             this.richTextBox1.TabIndex = 19;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged_1);
-            // 
-            // richTextBox5
-            // 
-            this.richTextBox1.BackColor = System.Drawing.Color.DarkGray;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(32, 60);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(464, 62);
-            this.richTextBox1.TabIndex = 19;
-            this.richTextBox1.Text = "";
             // 
             // richTextBox4
             // 
@@ -123,13 +111,13 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImage = global::Vinhos.Properties.Resources.vinhaça;
+            this.button4.BackgroundImage = global::Vinhos.Properties.Resources._03c8c134458037de51c64988ae9bdc46;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(30, 141);
+            this.button4.Location = new System.Drawing.Point(3, 111);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(159, 246);
+            this.button4.Size = new System.Drawing.Size(228, 250);
             this.button4.TabIndex = 7;
             this.button4.UseVisualStyleBackColor = false;
             // 

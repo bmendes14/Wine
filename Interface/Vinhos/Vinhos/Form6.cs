@@ -29,38 +29,7 @@ namespace Vinhos
         Boolean f = true;
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            String sql = "exec Vinhos.RegiaoName";
-            int x = 50;
-            int y = 30;
-            cn.Close();
-            cn.Open();
-            if (f)
-            {
-                using (SqlCommand command = new SqlCommand(sql, cn))
-                {
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-
-                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
-                            if (x == 458)
-                            {
-                                x = 50;
-                                y = y + 222;
-                            }
-                            else
-                            {
-                                x = x + 204;
-                            }
-
-                        }
-                    }
-                }
-
-                f = false;
-            }
+            
         }
         private void addTemplate(Point pp, String wine, int number)
         {
@@ -69,12 +38,12 @@ namespace Vinhos
             Button b = new Button();
             RichTextBox t = new RichTextBox();
 
-            b.Location = new Point(35, 13);
-            b.Size = new Size(58, 102);
+            b.Location = new Point(15, 13);
+            b.Size = new Size(100, 102);
             b.BackColor = Color.Transparent;
             b.FlatStyle = FlatStyle.Flat;
             b.FlatAppearance.BorderSize = 0;
-            b.BackgroundImage = Vinhos.Properties.Resources.vinhaça;
+            b.BackgroundImage = Vinhos.Properties.Resources._03c8c134458037de51c64988ae9bdc46;
             b.ImageAlign = ContentAlignment.MiddleCenter;
             b.BackgroundImageLayout = ImageLayout.Zoom;
 
@@ -135,6 +104,46 @@ namespace Vinhos
 
         }
 
+        private void panel2_Paint_1(object sender, PaintEventArgs e)
+        {
+            String sql = "select * from Vinhos.RegiaoName()";
+            int x = 50;
+            int y = 30;
+            cn.Close();
+            cn.Open();
+            if (f)
+            {
+                using (SqlCommand command = new SqlCommand(sql, cn))
+                {
 
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+
+                        }
+                    }
+                }
+
+                f = false;
+            }
+
+            }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

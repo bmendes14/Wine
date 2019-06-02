@@ -15,7 +15,7 @@ namespace Vinhos
     public partial class Form7 : Form
     {
         int s;
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         public Form7( int i)
         {
@@ -27,7 +27,7 @@ namespace Vinhos
         {
             cn = new SqlConnection(sa);
             SqlCommand command = new SqlCommand();
-            command.CommandText = "exec Vinhos.RegiaoInfo @ID";
+            command.CommandText = "select * from Vinhos.RegiaoInfo(@ID)";
             command.Parameters.Clear();
             command.Parameters.Add("@ID", SqlDbType.Int);
             command.Parameters["@ID"].Value = s;
@@ -44,7 +44,7 @@ namespace Vinhos
                         richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
                         richTextBox1.Text = "Solo: " + reader.GetString(0);
                         richTextBox3.Text = "Clima: " + reader.GetString(1);
-                        richTextBox4.Text = "Codigo Posta: "+ reader.GetString(3);
+                        richTextBox4.Text = "Codigo Postal: "+ reader.GetString(3);
 
                     }
                 }
@@ -93,7 +93,7 @@ namespace Vinhos
 
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
         {
-
+                
         }
     }
 }

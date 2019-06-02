@@ -52,7 +52,7 @@ namespace Vinhos
         private void normal()
         {
             panel3.Controls.Clear();
-            String sql = "exec Vinhos.QuintaName";
+            String sql = "select * from Vinhos.QuintasName()";
             int x = 50;
             int y = 30;
             cn.Close();
@@ -154,7 +154,7 @@ namespace Vinhos
             {
                 panel3.Controls.Clear();
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "exec Vinhos.Quinta1 @ID";
+                command.CommandText = "select * from Vinhos.getQuintaByReg (@ID)";
                 command.Parameters.Clear();
                 command.Parameters.Add("@ID", SqlDbType.Int);
                 command.Parameters["@ID"].Value = 2;
@@ -217,7 +217,7 @@ namespace Vinhos
             {
                 panel3.Controls.Clear();
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "exec Vinhos.Quinta1 @ID";
+                command.CommandText = "select * from Vinhos.getQuintaByReg (@ID)";
                 command.Parameters.Clear();
                 command.Parameters.Add("@ID", SqlDbType.Int);
                 command.Parameters["@ID"].Value = 1;
@@ -278,7 +278,7 @@ namespace Vinhos
             {
                 panel3.Controls.Clear();
                 SqlCommand command = new SqlCommand();
-                command.CommandText = "exec Vinhos.Quinta1 @ID";
+                command.CommandText = "select * from Vinhos.getQuintaByReg (@ID)";
                 command.Parameters.Clear();
                 command.Parameters.Add("@ID", SqlDbType.Int);
                 command.Parameters["@ID"].Value = 3;

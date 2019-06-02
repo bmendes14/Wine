@@ -37,7 +37,7 @@ namespace Vinhos
         {
             cn = new SqlConnection(sa);
             SqlCommand command = new SqlCommand();
-            command.CommandText="exec Vinhos.WineCaracteristics @ID";
+            command.CommandText= "select * from Vinhos.WineCaracteristics(@ID)";
             command.Parameters.Clear();
             command.Parameters.Add("@ID", SqlDbType.Int);
             command.Parameters["@ID"].Value = s;
@@ -130,6 +130,16 @@ namespace Vinhos
         private void richTextBox7_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form10 form = new Form10(s);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Close(); };
+            form.Show();
+            this.Hide();
         }
     }
 }
