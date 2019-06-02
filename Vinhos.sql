@@ -172,7 +172,7 @@ as
 go
 
 
-select * from Vinhos.WineList();
+-- select * from Vinhos.WineList();
 --###############################################
 -- Get all the names, id of all  Wine 
 --###############################################
@@ -188,7 +188,7 @@ as
 	return(select Nome,ID from Vinhos.Vinho);
 go
 
-select * from Vinhos.WineName();
+-- select * from Vinhos.WineName();
 
 --###############################################
 -- Get all the info from a determinated Wine ID
@@ -208,7 +208,7 @@ as
 	return(Select Vinhos.Vinho.*,Vinhos.Quinta.Nome as QuintaNome, Vinhos.Regiao.Nome as RegiaoNome from (Vinhos.Vinho join Vinhos.Quinta on Vinhos.Vinho.QuintaID = Vinhos.Quinta.ID) join Vinhos.Regiao on Vinhos.Vinho.RegiaoID = Vinhos.Regiao.ID  where Vinhos.Vinho.ID = @ID) ;
 go
 
-select * from Vinhos.WineCaracteristics(1);
+-- select * from Vinhos.WineCaracteristics(1);
 
 
 --################################################
@@ -225,7 +225,7 @@ as
 	return(Select count(*) as counts from Vinhos.Vinho);
 go
 
-select * from Vinhos.CountWines();
+-- select * from Vinhos.CountWines();
 
 --################################################
 -- Get name of a determinated wine in our database
@@ -297,7 +297,7 @@ join Vinhos.Owner on Vinhos.OwnerShip.Owner_ID = Vinhos.Owner.ID
  where Vinhos.Quinta.ID=@ID);
 go
 
-select * from Vinhos.QuintaInfo(1);
+-- select * from Vinhos.QuintaInfo(1);
 
 
 --################################################
@@ -314,7 +314,7 @@ create function Vinhos.QuintaName() returns table
 as 
 	return(select Nome,ID from Vinhos.Quinta);
 go
-select * from Vinhos.QuintaName();
+-- select * from Vinhos.QuintaName();
 
 --################################################
 -- Get all names and id from Regiao
@@ -329,7 +329,7 @@ create function Vinhos.RegiaoName() returns table
 as 
 	return(select Nome,ID from Vinhos.Regiao);
 go
-select * from Vinhos.RegiaoName();
+-- select * from Vinhos.RegiaoName();
 --EXEC Vinhos.QuintaName;
 
 --################################################
@@ -347,7 +347,7 @@ create function Vinhos.RegiaoInfo(@ID INT) returns table
 as 
 	return(select * from Vinhos.Regiao where Vinhos.Regiao.ID=@ID);
 go
-select * from Vinhos.RegiaoInfo(1);
+-- select * from Vinhos.RegiaoInfo(1);
 
 
 --################################################
@@ -363,10 +363,46 @@ create function Vinhos.OwnerInfo(@ID INT) returns table
 as 
 	return(select * from Vinhos.Owner where Vinhos.Owner.ID=@ID);
 go
-select * from Vinhos.OwnerInfo(1);
+-- select * from Vinhos.OwnerInfo(1);
 
 
 
+
+--################################################
+-- Get Name and Numbe of partner of Enologo
+--################################################
+go
+create function Vinhos.Enologo() returns table
+as
+	return(select Vinhos.Enologos.Nome,Vinhos.Enologos.NSocioEnologo from Vinhos.Enologos);
+go
+
+-- select * from Vinhos.Enologo();
+
+
+
+--################################################
+-- Get Castas associate with wine
+--################################################
+go
+create function Vinhos.CastasAssociadaVinho(@ID int) returns table
+as
+	return(select Vinhos.Castas.Nome,Vinhos.Castas.ID from Vinhos.Tem, Vinhos.Castas Where Vinhos.Tem.VinhoId=@ID and Vinhos.Castas.ID=Vinhos.Tem.CastasID);
+go
+
+-- select * from  Vinhos.CastasAssociadaVinho(1);
+
+
+--################################################
+-- Get All Castas 
+--################################################
+go
+create function Vinhos.ALLCastas() returns table
+as
+	return(select Vinhos.Castas.Nome,Vinhos.Castas.ID from Vinhos.Castas);
+go
+
+-- select * from  Vinhos.ALLCastas();
 
 --################################################
 -- Do filters for castas
@@ -399,6 +435,21 @@ as
 	END                   
 go
 
+--################################################
+-- Insert Casta and relation
+--################################################
+go
+create procedure Vinhos.CastaRelationTem(@VinhoID int,@Aroma varchar(60), @Descricao varchar(800), @Nome varchar(60))
+as 
+	declare @CastaID int;
+	BEGIN  
+	insert into Vinhos.Castas(Aroma, Descricao, Nome) values(@Aroma , @Descricao, @Nome) 
+	Set @CastaID=( SELECT max(Vinhos.Castas.ID) FROM Vinhos.Castas);
+	insert into Vinhos.Tem(VinhoId, CastasID) values(@VinhoID , @CastaID) 
+	END                   
+go
+
+
 
 --################################################
 -- Delete Casta and relation
@@ -411,12 +462,23 @@ as
 	END                   
 go
 
-
 -- exec Vinhos.InsertCasta 'Branco','ola','0la';
 -- exec Vinhos.InsertTem 1,19;
 -- exec Vinhos.DeleteCasta 20;
 -- select * from Vinhos.Castas;
 -- select * from Vinhos.Tem;
+
+
+--################################################
+-- Delete Casta and wine  relation
+--################################################
+go
+create procedure Vinhos.DeleteCastaWineAssociation(@WineID int, @CastaID int)
+as 
+	BEGIN  
+	DELETE FROM Vinhos.Tem WHERE CastasID = @CastaID and VinhoId=@WineID ;
+	END                   
+go
 
 
 --################################################
@@ -438,7 +500,9 @@ as
 	DELETE FROM Vinhos.Regiao WHERE ID = @ID;  
 	END                   
 go
-
+-- exec Vinhos.InsertRegiao 'ola','ola','ola','ola'
+-- exec Vinhos.DeleteRegiao 9
+-- go
 --################################################
 -- Insert Quinta
 --################################################
@@ -456,9 +520,12 @@ go
 create procedure Vinhos.DeleteQuinta(@ID int)
 as 
 	BEGIN  
-	DELETE FROM Vinhos.Quinta where ID=@ID  
+	DELETE FROM Vinhos.Quinta where ID=@ID 
+	DELETE FROM Vinhos.OwnerShip where Vinhos.OwnerShip.Quinta_ID =@ID   
 	END                   
 go
+
+
 
 -- exec Vinhos.InsertRegiao 'ola','ola','ola','ola'
 -- exec Vinhos.InsertQuinta 'ola','ola',100,'ola','ola','8'
@@ -467,6 +534,22 @@ go
 -- exec Vinhos.DeleteQuinta 13
 -- select * from Vinhos.Regiao;
 -- select * from Vinhos.Quinta;
+
+
+
+--################################################
+-- Insert Enologo
+--################################################
+go
+create procedure Vinhos.InsertEnologos(@Name varchar(60), @Nparticipacoes int, @NSocioEnologo int,@UserId int)
+as 
+	BEGIN  
+	insert into Vinhos.Enologos(Nome,Nparticipacoes,NSocioEnologo,UserId) values(@Name , @Nparticipacoes,@NSocioEnologo,@UserId)  
+	END                   
+go
+
+--exec Vinhos.InsertEnologos 'oi',12,11111,1;
+
 
 --################################################
 --Insert Wines
@@ -504,8 +587,56 @@ go
 
 --exec Vinhos.UpdateVinho ID ,Nome,PercentagemAlcool,Preco, Avaliacao,Descricao,InfoNutricional ,TemperaturaServir ,RegiaoID, QuintaID;
 
+--################################################
+--Update Região
+--################################################
+go
+CREATE PROCEDURE Vinhos.UpdateRegiao(@Solo varchar(60),@Clima varchar(60),@Nome varchar(60), @Codigo varchar(9),@ID int)
+as
+	update Vinhos.Regiao set Solo=@Solo, Clima=@Clima, Nome=@Nome,Codigo=@Codigo,ID=@ID ;
+go
 
 
+--################################################
+--Update Quinta
+--################################################
+go
+CREATE PROCEDURE Vinhos.UpdateQuinta(@Nome varchar(60),@Morada varchar(60),@TamanhoProducao int,@Descicao varchar(1000), @Telefone varchar(9), @RegiaoID int)
+as
+	update Vinhos.Quinta set Nome=@Nome,Morada=@Morada, TamanhoProducao=@TamanhoProducao,Descricao=@Descicao,Telefone=@Telefone,RegiaoID=@RegiaoID ;
+go
+
+
+
+--################################################
+-- Triggers 
+--################################################
+go
+CREATE TRIGGER Vinhos.ValidateEnologo ON Vinhos.Enologos
+INSTEAD OF UPDATE,INSERT
+as
+begin
+	Select *
+	Into   #Temp
+	From   inserted
+
+	WHILE (SELECT count(*) FROM #Temp) >0
+	begin
+		DECLARE @NSocioEnologo as int;
+		SELECT TOP 1 @NSocioEnologo = NSocioEnologo FROM #Temp;
+		if  (SELECT count(*) FROM Vinhos.Enologos WHERE Vinhos.Enologos.NSocioEnologo=@NSocioEnologo) > 0
+		begin
+			DELETE #TEMP WHERE NSocioEnologo=@NSocioEnologo;
+			RAISERROR('Enologo ALREADY HAVE THIS Number of partner', 16, 1);
+		end
+		ELSE
+		begin
+			insert into Vinhos.Enologos SELECT * FROM #TEMP WHERE NSocioEnologo=@NSocioEnologo;
+			DELETE #TEMP WHERE NSocioEnologo=@NSocioEnologo;
+		end
+	end	
+end
+go
 
 
 
