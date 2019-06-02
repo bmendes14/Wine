@@ -365,6 +365,9 @@ as
 go
 select * from Vinhos.OwnerInfo(1);
 
+
+
+
 --################################################
 -- Do filters for castas
 --################################################
@@ -372,7 +375,9 @@ select * from Vinhos.OwnerInfo(1);
 
 
 
-
+--################################################
+-- Procedures
+--################################################
 --################################################
 -- Insert Casta
 --################################################
@@ -458,7 +463,6 @@ as
 	END                   
 go
 
-
 -- exec Vinhos.InsertRegiao 'ola','ola','ola','ola'
 -- exec Vinhos.InsertQuinta 'ola','ola',100,'ola','ola','8'
 
@@ -467,6 +471,30 @@ go
 -- select * from Vinhos.Regiao;
 -- select * from Vinhos.Quinta;
 
+--################################################
+--Insert Wines
+--################################################
+go
+create procedure Vinhos.InsertVinho(@Nome varchar(60),@PercentagemAlcool int,@Preco decimal, @Avaliacao int,@Descricao varchar(500),@InfoNutricional varchar(200),@TemperaturaServir varchar(7),@RegiaoID int, @QuintaID int )
+as 
+	BEGIN  
+	insert into Vinhos.Vinho(Nome,PercentagemAlcool,Preco,Avaliacao,Descricao,InfoNutricional,TemperaturaServir,RegiaoID,QuintaID) values(@Nome,@PercentagemAlcool,@Preco, @Avaliacao,@Descricao,@InfoNutricional,@TemperaturaServir,@RegiaoID, @QuintaID)  
+	END                   
+go
+
+--################################################
+--Delete Wines
+--################################################
+create procedure Vinhos.DeleteVinho(@ID int )
+as 
+	BEGIN  
+	DELETE FROM Vinhos.Vinho where ID=@ID  
+	END                   
+go
+
+-- exec Vinhos.InsertVinho 'ola',1,1.2,10,'ola','ola','10',1,1
+-- exec Vinhos.DeleteVinho 16
+-- select * from Vinhos.Vinho;
 
 
 
@@ -479,6 +507,10 @@ go
 
 
 
+
+--################################################
+-- DATA INSERTION
+--################################################
 
 insert into Vinhos.Users values
     ('José Gaspar',	           '1997/01/10',	'ola123',	'zsdasd',	'12345678'),
