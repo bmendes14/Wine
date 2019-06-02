@@ -1,8 +1,9 @@
 --drop database VinhosDatabase;
---create database VinhosDatabase;
---go
---use VinhosDatabase;
-use aula9;
+go
+create database VinhosDatabase;
+go
+use VinhosDatabase;
+--use aula9;
 go
 create schema Vinhos;
 --drop schema Vinhos;
@@ -590,9 +591,9 @@ go
 --Update Região
 --################################################
 go
-CREATE PROCEDURE Vinhos.UpdateRegiao(@Solo varchar(60),@Clima varchar(60),@Nome varchar(60), @Codigo varchar(9))
+CREATE PROCEDURE Vinhos.UpdateRegiao(@Solo varchar(60),@Clima varchar(60),@Nome varchar(60), @Codigo varchar(9), @ID int)
 as
-	update Vinhos.Regiao set Solo=@Solo, Clima=@Clima, Nome=@Nome,Codigo=@Codigo;
+	update Vinhos.Regiao set Solo=@Solo, Clima=@Clima, Nome=@Nome,Codigo=@Codigo where ID=@ID;
 go
 
 
@@ -600,9 +601,9 @@ go
 --Update Quinta
 --################################################
 go
-CREATE PROCEDURE Vinhos.UpdateQuinta(@Nome varchar(60),@Morada varchar(60),@TamanhoProducao int,@Descicao varchar(1000), @Telefone varchar(9), @RegiaoID int)
+CREATE PROCEDURE Vinhos.UpdateQuinta(@Nome varchar(60),@Morada varchar(60),@TamanhoProducao int,@Descicao varchar(1000), @Telefone varchar(9), @RegiaoID int, @ID int)
 as
-	update Vinhos.Quinta set Nome=@Nome,Morada=@Morada, TamanhoProducao=@TamanhoProducao,Descricao=@Descicao,Telefone=@Telefone,RegiaoID=@RegiaoID ;
+	update Vinhos.Quinta set Nome=@Nome,Morada=@Morada, TamanhoProducao=@TamanhoProducao,Descricao=@Descicao,Telefone=@Telefone,RegiaoID=@RegiaoID where ID=@ID;
 go
 
 
