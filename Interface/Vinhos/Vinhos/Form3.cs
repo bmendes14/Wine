@@ -70,7 +70,6 @@ namespace Vinhos
                         RegiaoID = reader.GetInt32(8);
                         RegiaoNome = reader.GetString(11);
                         button3.Text = "Região: "+RegiaoNome;
-                        button5.Text = reader.GetString(12);
                     }
                 }
 

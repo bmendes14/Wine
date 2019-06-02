@@ -205,7 +205,7 @@ select * from Vinhos.WineName();
 go
 create function Vinhos.WineCaracteristics( @ID int) returns table
 as 
-	return(Select Vinhos.Vinho.*,Vinhos.Quinta.Nome as QuintaNome, Vinhos.Regiao.Nome as RegiaoNome from ((Vinhos.Vinho join Vinhos.Quinta on Vinhos.Vinho.QuintaID = Vinhos.Quinta.ID) join Vinhos.Regiao on Vinhos.Vinho.RegiaoID = Vinhos.Regiao.ID ) where Vinhos.Vinho.ID = @ID) ;
+	return(Select Vinhos.Vinho.*,Vinhos.Quinta.Nome as QuintaNome, Vinhos.Regiao.Nome as RegiaoNome from (Vinhos.Vinho join Vinhos.Quinta on Vinhos.Vinho.QuintaID = Vinhos.Quinta.ID) join Vinhos.Regiao on Vinhos.Vinho.RegiaoID = Vinhos.Regiao.ID  where Vinhos.Vinho.ID = @ID) ;
 go
 
 select * from Vinhos.WineCaracteristics(1);
