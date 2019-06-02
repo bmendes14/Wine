@@ -419,9 +419,6 @@ go
 -- select * from Vinhos.Tem;
 
 
-
-
-
 --################################################
 -- Insert Regiao
 --################################################
@@ -496,8 +493,16 @@ go
 -- exec Vinhos.DeleteVinho 16
 -- select * from Vinhos.Vinho;
 
+--################################################
+--Update Wines
+--################################################
+go
+CREATE PROCEDURE Vinhos.UpdateVinho(@ID int,@Nome varchar(60),@PercentagemAlcool int,@Preco decimal, @Avaliacao int,@Descricao varchar(500),@InfoNutricional varchar(200),@TemperaturaServir varchar(7),@RegiaoID int, @QuintaID int)
+as
+	update Vinhos.Vinho SET Nome=@Nome,PercentagemAlcool=@PercentagemAlcool,Preco=@Preco,Avaliacao=@Avaliacao,Descricao=@Descricao,InfoNutricional=@InfoNutricional, TemperaturaServir=@TemperaturaServir,RegiaoID=@RegiaoID,QuintaID=@QuintaID	 WHERE ID = @ID;
+go
 
-
+--exec Vinhos.UpdateVinho ID ,Nome,PercentagemAlcool,Preco, Avaliacao,Descricao,InfoNutricional ,TemperaturaServir ,RegiaoID, QuintaID;
 
 
 

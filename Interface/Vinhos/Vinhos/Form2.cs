@@ -15,7 +15,7 @@ namespace Vinhos
 
     public partial class Form2 : Form
     {
-        private String s = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String s = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
 
         public Form2()
@@ -139,6 +139,7 @@ namespace Vinhos
                 t.Text = s + Environment.NewLine + s2;
 
             }
+           
 
 
             p.BackColor = Color.Gray;
@@ -184,6 +185,11 @@ namespace Vinhos
                 form.FormClosing += delegate { this.Show(); };
                 form.Show();
                 this.Hide();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

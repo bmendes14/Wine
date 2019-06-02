@@ -66,6 +66,7 @@
             this.checkBox6.TabIndex = 23;
             this.checkBox6.Text = "Regional Minho";
             this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // checkBox5
             // 
@@ -76,6 +77,7 @@
             this.checkBox5.TabIndex = 22;
             this.checkBox5.Text = "Molção e Melgaço";
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // checkBox4
             // 

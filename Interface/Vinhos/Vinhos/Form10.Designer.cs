@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox20 = new System.Windows.Forms.RichTextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -52,7 +53,6 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +90,17 @@
             this.panel1.TabIndex = 14;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(502, 350);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(134, 62);
+            this.button2.TabIndex = 42;
+            this.button2.Text = "Remove";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -99,6 +110,7 @@
             this.button1.TabIndex = 41;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // richTextBox20
             // 
@@ -230,7 +242,7 @@
             this.richTextBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox12.Location = new System.Drawing.Point(67, 177);
             this.richTextBox12.Name = "richTextBox12";
-            this.richTextBox12.Size = new System.Drawing.Size(42, 30);
+            this.richTextBox12.Size = new System.Drawing.Size(53, 30);
             this.richTextBox12.TabIndex = 26;
             this.richTextBox12.Text = "";
             this.richTextBox12.TextChanged += new System.EventHandler(this.richTextBox12_TextChanged);
@@ -240,7 +252,7 @@
             this.richTextBox14.BackColor = System.Drawing.Color.Silver;
             this.richTextBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox14.Location = new System.Drawing.Point(115, 183);
+            this.richTextBox14.Location = new System.Drawing.Point(126, 183);
             this.richTextBox14.Name = "richTextBox14";
             this.richTextBox14.ReadOnly = true;
             this.richTextBox14.Size = new System.Drawing.Size(25, 26);
@@ -258,6 +270,7 @@
             this.richTextBox11.Size = new System.Drawing.Size(58, 30);
             this.richTextBox11.TabIndex = 28;
             this.richTextBox11.Text = "Preço";
+            this.richTextBox11.TextChanged += new System.EventHandler(this.richTextBox11_TextChanged);
             // 
             // richTextBox3
             // 
@@ -351,17 +364,6 @@
             this.richTextBox4.TabIndex = 17;
             this.richTextBox4.Text = "";
             this.richTextBox4.TextChanged += new System.EventHandler(this.richTextBox4_TextChanged);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(502, 350);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(134, 62);
-            this.button2.TabIndex = 42;
-            this.button2.Text = "Remove";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form10
             // 

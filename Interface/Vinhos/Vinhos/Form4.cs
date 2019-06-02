@@ -14,7 +14,7 @@ namespace Vinhos
 {
     public partial class Form4 : Form
     {
-        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         int i = 0;
         private String nome;
@@ -334,7 +334,130 @@ namespace Vinhos
             }
         }
 
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox5.Checked)
+            {
+                panel3.Controls.Clear();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "select * from Vinhos.getQuintaByReg (@ID)";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = 4;
+                command.Connection = cn;
+                int x = 50;
+                int y = 30;
+                cn.Close();
+                cn.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
 
+
+                checkBox3.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox6.Enabled = false;
+
+            }
+            else
+            {
+                checkBox3.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox6.Enabled = true;
+                normal();
+
+            }
+
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox6.Checked)
+            {
+                panel3.Controls.Clear();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "select * from Vinhos.getQuintaByReg (@ID)";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = 5;
+                command.Connection = cn;
+                int x = 50;
+                int y = 30;
+                cn.Close();
+                cn.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                            if (x == 458)
+                            {
+                                x = 50;
+                                y = y + 222;
+                            }
+                            else
+                            {
+                                x = x + 204;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
+
+
+                checkBox3.Enabled = false;
+                checkBox2.Enabled = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+
+            }
+            else
+            {
+                checkBox3.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                normal();
+
+            }
+        }
 
 
 
@@ -362,7 +485,6 @@ namespace Vinhos
         {
 
         }
-
-    
+        
     }
 }

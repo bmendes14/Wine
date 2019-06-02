@@ -14,7 +14,7 @@ namespace Vinhos
     public partial class Form3 : Form
     {
         int s;
-        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         private String nome;
         private int alccol;
@@ -24,6 +24,10 @@ namespace Vinhos
         private String infoNut;
         private String temperatura;
 
+        private String QuintaNome;
+        private String RegiaoNome;
+        private int QuintaID;
+        private int RegiaoID;
 
         public Form3(int i)
         {
@@ -60,8 +64,13 @@ namespace Vinhos
                         richTextBox5.Text = reader.GetSqlDecimal(2) +"€";
                         richTextBox6.Text = reader.GetString(7);
                         richTextBox7.Text = "Avaliação: " + reader.GetInt32(3)+"/10";
-
-
+                        QuintaID = reader.GetInt32(9);
+                        QuintaNome = reader.GetString(10);
+                        button2.Text = "Quinta: " + QuintaNome;
+                        RegiaoID = reader.GetInt32(8);
+                        RegiaoNome = reader.GetString(11);
+                        button3.Text = "Região: "+RegiaoNome;
+                        button5.Text = reader.GetString(12);
                     }
                 }
 
@@ -77,8 +86,36 @@ namespace Vinhos
                          
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form5 form = new Form5(QuintaID);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Show(); };
+            form.Show();
+            this.Hide();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form7 form = new Form7(RegiaoID);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Show(); };
+            form.Show();
+            this.Hide();
+        }
+
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            Form7 form = new Form7(RegiaoID);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Show(); };
+            form.Show();
+            this.Hide();
 
         }
 
@@ -141,5 +178,7 @@ namespace Vinhos
             form.Show();
             this.Hide();
         }
+
+        
     }
 }

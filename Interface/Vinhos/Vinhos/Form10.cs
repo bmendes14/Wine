@@ -14,7 +14,7 @@ namespace Vinhos
     public partial class Form10 : Form
     {
         int wine;
-        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
 
         int quinta;
@@ -95,13 +95,13 @@ namespace Vinhos
                 {
                     while (reader.Read())
                     {
-                        richTextBox3.Text = reader.GetString(0);
-                        richTextBox5.Text = reader.GetString(4);
-                        richTextBox6.Text = reader.GetString(5);
-                        richTextBox10.Text = reader.GetInt32(1)+"";
-                        richTextBox12.Text = reader.GetSqlDecimal(2)+"";
-                        richTextBox17.Text = reader.GetString(7);
-                        richTextBox4.Text =reader.GetInt32(3) + "";
+                            richTextBox3.Text = reader.GetString(0);
+                            richTextBox5.Text = reader.GetString(4);
+                            richTextBox6.Text = reader.GetString(5);
+                            richTextBox10.Text = reader.GetInt32(1) + "";
+                            richTextBox12.Text = reader.GetSqlDecimal(2) + "";
+                            richTextBox17.Text = reader.GetString(7);
+                            richTextBox4.Text = reader.GetInt32(3) + "";
 
 
                             quinta = reader.GetInt32(9);
@@ -164,7 +164,7 @@ namespace Vinhos
 
         private void richTextBox12_TextChanged(object sender, EventArgs e)
         {
-            Preco = Convert.ToDouble(richTextBox12.Text);
+            //Preco = Convert.ToDouble(richTextBox12.Text);  Does not work like this
         }
 
         private void richTextBox4_TextChanged(object sender, EventArgs e)
@@ -218,6 +218,54 @@ namespace Vinhos
             }
             this.Close();
         }
+        bool updating = true;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (updating)
+            {
+                cn = new SqlConnection(sa);
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "exec Vinhos.UpdateVinho @ID ,@Nome,@PercentagemAlcool,@Preco, @Avaliacao,@Descricao,@InfoNutricional ,@TemperaturaServir ,@RegiaoID, @QuintaID";
+                command.Parameters.Clear();
+                command.Parameters.Add("@ID", SqlDbType.Int);
+                command.Parameters["@ID"].Value = wine;
+                command.Parameters.Add("@Nome", SqlDbType.VarChar);
+                command.Parameters["@Nome"].Value = nome;
+                command.Parameters.Add("@PercentagemAlcool", SqlDbType.Int);
+                command.Parameters["@PercentagemAlcool"].Value = PercentagemAlcool;
+                command.Parameters.Add("@Preco", SqlDbType.Decimal);
+                command.Parameters["@Preco"].Value = PercentagemAlcool;
+                command.Parameters.Add("@Avaliacao", SqlDbType.Int);
+                command.Parameters["@Avaliacao"].Value = avaliacao;
+                command.Parameters.Add("@Descricao", SqlDbType.VarChar);
+                command.Parameters["@Descricao"].Value = descricao;
+                command.Parameters.Add("@InfoNutricional", SqlDbType.VarChar);
+                command.Parameters["@InfoNutricional"].Value = info_nutricional;
+                command.Parameters.Add("@TemperaturaServir", SqlDbType.VarChar);
+                command.Parameters["@TemperaturaServir"].Value = temperatura;
+                command.Parameters.Add("@RegiaoID", SqlDbType.Int);
+                command.Parameters["@RegiaoID"].Value = regiao;
+                command.Parameters.Add("@QuintaID", SqlDbType.Int);
+                command.Parameters["@QuintaID"].Value = quinta ;
+
+                command.Connection = cn;
+                cn.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to load");
+                }
+                finally
+                {
+                    cn.Close();
+                }
+                updating = false;
+            }
+            this.Close();
+        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -234,6 +282,13 @@ namespace Vinhos
         {
             ComboboxItem intem = (ComboboxItem)comboBox2.SelectedItem;
             regiao = (int)intem.Value;
+        }
+
+        
+
+        private void richTextBox11_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

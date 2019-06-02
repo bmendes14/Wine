@@ -27,7 +27,7 @@ namespace Vinhos
         {
             cn = new SqlConnection(sa);
             SqlCommand command = new SqlCommand();
-            command.CommandText = "exec Vinhos.OwnerInfo @ID";
+            command.CommandText = "select * from Vinhos.OwnerInfo(@ID);";
             command.Parameters.Clear();
             command.Parameters.Add("@ID", SqlDbType.Int);
             command.Parameters["@ID"].Value = s;

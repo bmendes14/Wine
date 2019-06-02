@@ -329,6 +329,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(168, 44);
             this.richTextBox2.TabIndex = 21;
             this.richTextBox2.Text = "New Wine";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // richTextBox5
             // 
