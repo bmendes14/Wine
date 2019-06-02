@@ -1,8 +1,8 @@
 --drop database VinhosDatabase;
 --create database VinhosDatabase;
 --go
-use VinhosDatabase;
---use Northwind;
+--use VinhosDatabase;
+use aula9;
 go
 create schema Vinhos;
 --drop schema Vinhos;
@@ -42,12 +42,10 @@ create table Vinhos.Enologos(
 );
 
 create table Vinhos.Distribuidor(
-    Nome                    validname,
-    Adress                  VARCHAR(9),
+    Nome                    varchar(200) not null,
+    Adress                  VARCHAR(20),
     ID                      validint IDENTITY(1,1),
-    UserID                  varchar(12) not null,
     primary key (ID),
-    foreign key (UserId) references  Vinhos.Users(NIF)  on delete cascade,
 );
 
 
@@ -108,8 +106,9 @@ create table Vinhos.Derivados(
 
 create table Vinhos.Concursos(  
     Premiacoes        varchar(20),
-    CodigoConcurso    validint IDENTITY(1,1),
-    primary key (CodigoConcurso),
+    ID    validint IDENTITY(1,1),
+    CodigoConcurso validname,
+    primary key (ID),
 );
 
 
@@ -137,7 +136,7 @@ create table Vinhos.VinhosAssociados(
 create table Vinhos.Participa( 
     CodigoConcurso    validint, 
     VinhoId           validint,
-    foreign key (CodigoConcurso) references Vinhos.Concursos(CodigoConcurso)  on delete cascade, 
+    foreign key (CodigoConcurso) references Vinhos.Concursos(ID)  on delete cascade, 
     foreign key (VinhoId) references Vinhos.Vinho(ID)  on delete cascade,
 );
 
@@ -145,7 +144,7 @@ create table Vinhos.SaoJuri(
     SocioEnologo         validint,
     ConcursoID           validint,
     foreign key (SocioEnologo) references Vinhos.Enologos(NSocioEnologo)  on delete cascade,
-    foreign key (ConcursoID) references Vinhos.Concursos(CodigoConcurso)  on delete cascade, 
+    foreign key (ConcursoID) references Vinhos.Concursos(ID)  on delete cascade, 
 );
 
 create table Vinhos.Distribui(  
@@ -591,9 +590,9 @@ go
 --Update Região
 --################################################
 go
-CREATE PROCEDURE Vinhos.UpdateRegiao(@Solo varchar(60),@Clima varchar(60),@Nome varchar(60), @Codigo varchar(9),@ID int)
+CREATE PROCEDURE Vinhos.UpdateRegiao(@Solo varchar(60),@Clima varchar(60),@Nome varchar(60), @Codigo varchar(9))
 as
-	update Vinhos.Regiao set Solo=@Solo, Clima=@Clima, Nome=@Nome,Codigo=@Codigo,ID=@ID ;
+	update Vinhos.Regiao set Solo=@Solo, Clima=@Clima, Nome=@Nome,Codigo=@Codigo;
 go
 
 
@@ -816,11 +815,108 @@ insert into Vinhos.Derivados VALUES
 ('BACELO NOVO',	'Volume: 0,70L,Grau de álcool: 40º',1),
 ('aguaArdente',	'Volume: 0,70L,Grau de álcool: 40º',2);
 
---insert into Vinhos.Participa();
---insert into Vinhos.Concursos();
---insert into Vinhos.SaoJuri();
---insert into Vinhos.Distribuidor();
---insert into Vinhos.Distribui();
+
+
+
+
+insert into Vinhos.Distribuidor values
+('HERITAGE WINES - DISTRIBUIÇÃO DE BEBIDAS, LDA','4400-088'),
+('DECANTE - VINHOS, LDA','8365-307'),
+('DECOV - DESTILAÇÃO E COMERCIO DE VINHOS, S.A.','4700-133'),
+('DAVID DELAFORCE - VINHOS, LDA','4405-853'),
+('ROTA VERDE - ASSOCIAÇÃO PARA O DESENVOLVIMENTO DA ROTA DOS VINHOS VERDES','4050-501'),
+('RE - VINHOS E DERIVADOS, UNIPESSOAL, LDA','4960-341'),
+('DGM ORGANOLEPTICS - COMÉRCIO E DISTRIBUIÇÃO DE VINHOS E DERIVADOS, UNIPESSOAL, LDA','4580-156'),
+('CORAL DO DEUS MENINO DE FIGUEIRO DOS VINHOS','3260-407'),
+('ESSÊNCIAS & DESEJOS - COMÉRCIO DE VINHOS, UNIPESSOAL, LDA','2630-380'),
+('ASSOCIAÇÃO DESPORTIVA DE FIGUEIRÓ DOS VINHOS','3260-419'),
+('CAVES SANTA MARTA - VINHOS E DERIVADOS, C.R.L.','5030-477');
+
+
+insert into Vinhos.Distribui values
+(1,1),
+(2,2),
+(3,3),
+(4,4),
+(5,5),
+(6,6),
+(7,7),
+(8,8),
+(9,9),
+(10,10),
+(2,11),
+(3,6),
+(4,7),
+(1,8),
+(2,9),
+(10,1),
+(3,2);
+
+
+
+insert into Vinhos.Concursos VALUES
+('melhor tinto','BACCHUS 2015'),
+('melhor branco','Berliner Wein Trophy 2015'),
+('melhor rose','Catavinum World Wine and Spirits Competition 2015'),
+('melhor vinho','Challenge International du Vin 2015'),
+('melhor vinho','Concours International des Vins Monde');
+
+insert into Vinhos.Participa values
+(4,1),
+(4,2),
+(4,3),
+(4,4),
+(4,5),
+(4,6),
+(4,7),
+(5,7),
+(5,8),
+(5,9),
+(5,10),
+(5,11),
+(5,12),
+(5,13),
+(5,14),
+(5,15),
+(5,3),
+(5,4),
+(4,9),
+(4,10),
+(1,2),
+(1,5),
+(1,15),
+(1,12),
+(1,8),
+(2,10),
+(2,14),
+(2,3),
+(3,4),
+(3,5),
+(3,6);
+
+
+insert into Vinhos.SaoJuri values
+(11111,4),
+(11112,4),
+(11113,4),
+(11114,4),
+(11115,4),
+(11116,5),
+(11117,5),
+(11118,5),
+(11119,4),
+(11120,4),
+(11121,1),
+(11111,2),
+(11112,2),
+(11113,2),
+(11114,2),
+(11115,1),
+(11116,1),
+(11117,1),
+(11118,2),
+(11116,3),
+(11117,3);
 
 
 
