@@ -137,6 +137,9 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.richTextBox6);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form5";
             this.Text = "Form5";
             this.Load += new System.EventHandler(this.Form5_Load);

@@ -12,10 +12,9 @@ using System.Windows.Forms;
 namespace Vinhos
 {
 
-
     public partial class Form2 : Form
     {
-        private String s = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String s = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
 
         public Form2()
@@ -31,26 +30,25 @@ namespace Vinhos
            
         }
 
-        Boolean f = true;
+        Boolean f = true; // bool var to paint painel only one time
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        //update interface
+        private void update()
         {
+            panel3.Controls.Clear();
             String sql = "select * from Vinhos.WineName()";
             int x = 50;
             int y = 30;
-            cn.Close();
             cn.Open();
-            if (f)
-           {
-                using (SqlCommand command = new SqlCommand(sql, cn))
-                {
+            using (SqlCommand command = new SqlCommand(sql, cn))
+            {
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                       
-                        addTemplate(new Point(x, y), reader.GetString(0),reader.GetInt32(1));
+
+                        addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
                         if (x == 458)
                         {
                             x = 50;
@@ -64,26 +62,20 @@ namespace Vinhos
                     }
                 }
             }
-
-           f = false;
+            cn.Close();
         }
-    }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        // First Load
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
-
+            if (f)
+            {
+                update();
+                f = false;
+            }
         }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
+        // Template
         private void addTemplate(Point pp, String wine, int number)
         {
 
@@ -113,7 +105,6 @@ namespace Vinhos
 
             String[] aux = wine.Split(' ');
 
-
             t.Location = new Point(9, 122);
             t.BackColor = Color.Gray;
             t.BorderStyle = BorderStyle.None;
@@ -141,8 +132,7 @@ namespace Vinhos
             }
            
 
-
-            p.BackColor = Color.Gray;
+             p.BackColor = Color.Gray;
              p.Location=pp;
              p.BorderStyle = BorderStyle.Fixed3D;
              p.Size = new Size(129, 185);
@@ -152,44 +142,55 @@ namespace Vinhos
              p.Controls.Add(t);
 
 
-            panel3.Controls.Add(p);
-            
-
-
+             panel3.Controls.Add(p);
+           
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            panel3.Controls.Clear();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        // New Wine
         private void button1_Click_1(object sender, EventArgs e)
         {
                 Form9 form = new Form9();
                 form.Location = this.Location;
                 form.StartPosition = FormStartPosition.Manual;
-                form.FormClosing += delegate { this.Show(); };
+                form.FormClosing += delegate { update(); this.Show(); };
                 form.Show();
                 this.Hide();
         }
 
+
+
+        //Nerver Used
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

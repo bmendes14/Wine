@@ -14,7 +14,7 @@ namespace Vinhos
     public partial class Form10 : Form
     {
         int wine;
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
 
         int quinta;
@@ -93,13 +93,14 @@ namespace Vinhos
                 command.ExecuteNonQuery();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
+                        while (reader.Read())
+                        {
+                            String[] aux = (reader.GetSqlDecimal(2) + "").Split('.');
                             richTextBox3.Text = reader.GetString(0);
                             richTextBox5.Text = reader.GetString(4);
                             richTextBox6.Text = reader.GetString(5);
                             richTextBox10.Text = reader.GetInt32(1) + "";
-                            richTextBox12.Text = reader.GetSqlDecimal(2) + "";
+                            richTextBox12.Text = aux[0] + "," + aux[1];
                             richTextBox17.Text = reader.GetString(7);
                             richTextBox4.Text = reader.GetInt32(3) + "";
 
@@ -164,7 +165,7 @@ namespace Vinhos
 
         private void richTextBox12_TextChanged(object sender, EventArgs e)
         {
-            //Preco = Convert.ToDouble(richTextBox12.Text);  Does not work like this
+            Preco = Convert.ToDouble(richTextBox12.Text);
         }
 
         private void richTextBox4_TextChanged(object sender, EventArgs e)

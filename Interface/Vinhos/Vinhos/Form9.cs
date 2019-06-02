@@ -13,7 +13,7 @@ namespace Vinhos
 {
     public partial class Form9 : Form
     {
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
 
         int quinta;

@@ -15,7 +15,7 @@ namespace Vinhos
     public partial class Form7 : Form
     {
         int s;
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         public Form7( int i)
         {
@@ -23,7 +23,7 @@ namespace Vinhos
             InitializeComponent();
         }
 
-        private void Form7_Load(object sender, EventArgs e)
+        private void update()
         {
             cn = new SqlConnection(sa);
             SqlCommand command = new SqlCommand();
@@ -44,7 +44,7 @@ namespace Vinhos
                         richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
                         richTextBox1.Text = "Solo: " + reader.GetString(0);
                         richTextBox3.Text = "Clima: " + reader.GetString(1);
-                        richTextBox4.Text = "Codigo Postal: "+ reader.GetString(3);
+                        richTextBox4.Text = "Codigo Postal: " + reader.GetString(3);
 
                     }
                 }
@@ -58,7 +58,11 @@ namespace Vinhos
             {
                 cn.Close();
             }
+        }
 
+        private void Form7_Load(object sender, EventArgs e)
+        {
+            update();
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
@@ -94,6 +98,16 @@ namespace Vinhos
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
         {
                 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form14 form = new Form14(s);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { update(); this.Show(); };
+            form.Show();
+            this.Hide();
         }
     }
 }

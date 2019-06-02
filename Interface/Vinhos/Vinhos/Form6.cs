@@ -13,7 +13,7 @@ namespace Vinhos
 {
     public partial class Form6 : Form
     {
-        private String s = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String s = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         public Form6()
         {
@@ -26,11 +26,9 @@ namespace Vinhos
 
         }
 
+        //Bool aux to force first draw of interface
         Boolean f = true;
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
+        //Template
         private void addTemplate(Point pp, String wine, int number)
         {
 
@@ -65,7 +63,7 @@ namespace Vinhos
             t.BackColor = Color.Gray;
             t.BorderStyle = BorderStyle.None;
             t.SelectionAlignment = HorizontalAlignment.Center;
-            t.Size = new Size(115, 59);
+            t.Size = new Size(115, 30);
             t.Font = new Font("Arial", 8, FontStyle.Regular);
             t.WordWrap = true;
             String s = aux[0];
@@ -84,8 +82,6 @@ namespace Vinhos
             t.Text = s + Environment.NewLine + s2;
 
 
-
-
             p.BackColor = Color.Gray;
             p.Location = pp;
             p.BorderStyle = BorderStyle.Fixed3D;
@@ -97,51 +93,69 @@ namespace Vinhos
 
 
             panel2.Controls.Add(p);
-
-
-
-
-
         }
 
-        private void panel2_Paint_1(object sender, PaintEventArgs e)
+        //Update Interface 
+        private void update()
         {
+            panel2.Controls.Clear();
             String sql = "select * from Vinhos.RegiaoName()";
             int x = 50;
             int y = 30;
-            cn.Close();
             cn.Open();
-            if (f)
+            using (SqlCommand command = new SqlCommand(sql, cn))
             {
-                using (SqlCommand command = new SqlCommand(sql, cn))
+
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+
+                        addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
+                        if (x == 458)
                         {
-
-                            addTemplate(new Point(x, y), reader.GetString(0), reader.GetInt32(1));
-                            if (x == 458)
-                            {
-                                x = 50;
-                                y = y + 222;
-                            }
-                            else
-                            {
-                                x = x + 204;
-                            }
-
+                            x = 50;
+                            y = y + 222;
                         }
+                        else
+                        {
+                            x = x + 204;
+                        }
+
                     }
                 }
+            }
+            cn.Close();
 
+        }
+
+        // paint painel first time
+        private void panel2_Paint_1(object sender, PaintEventArgs e)
+        {           
+            if (f)
+            {
+                update();
                 f = false;
             }
+        }
 
-            }
+        //New Regiao Button
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form13 form = new Form13();
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { update(); this.Show(); };
+            form.Show();
+            this.Hide();
+        }
 
+        //Never Used
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

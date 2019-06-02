@@ -14,7 +14,7 @@ namespace Vinhos
     public partial class Form3 : Form
     {
         int s;
-        private String sa = "data source=LAPTOP-583710C4\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
         SqlConnection cn;
         private String nome;
         private int alccol;
@@ -178,6 +178,14 @@ namespace Vinhos
             this.Hide();
         }
 
-        
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form11 form = new Form11(s);
+            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { this.Close(); };
+            form.Show();
+            this.Hide();
+        }
     }
 }
