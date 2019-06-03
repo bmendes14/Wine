@@ -155,6 +155,15 @@ create table Vinhos.Distribui(
     foreign key (DistribuiID) references Vinhos.Distribuidor(ID) on delete cascade,
 );
 
+create table Vinhos.Posicoes(
+    PosicoesNu          validint,
+    CodigoConcurso      validint,
+    VinhoID             validint,
+    foreign key (CodigoConcurso) references Vinhos.Concursos(ID)  on delete cascade, 
+    foreign key (VinhoID) references Vinhos.Vinho(ID)  on delete cascade,
+);
+
+
 --################################################
 --              Funtions
 --################################################
@@ -405,15 +414,49 @@ go
 -- select * from  Vinhos.ALLCastas();
 
 --################################################
--- Do filters for castas
+-- get all concursos name
 --################################################
+go
+create function Vinhos.ConcursoName() returns table
+as 
+	return(select * from Vinhos.Concursos );
+go
 
 
+
+--################################################
+-- get Enologo info
+--################################################
+go
+create function Vinhos.EnologoNames(@ID int) returns table
+as
+	return(select Vinhos.Enologos.Nparticipacoes, Vinhos.Enologos.NSocioEnologo,Vinhos.Users.Nome,Vinhos.Users.DataNascimento,Vinhos.Users.NIF from Vinhos.Enologos join Vinhos.Users on Vinhos.Enologos.UserId=Vinhos.Users.NIF where Vinhos.Enologos.NSocioEnologo=@ID );
+go
+
+
+--################################################
+-- get Enologo wine's association
+--################################################
+go
+create function Vinhos.EnologoAssociatioWine(@ID int) returns table
+as
+	return(select  Vinhos.Vinho.Nome as VinhoNome, Vinhos.Vinho.ID AS Vinhoid from Vinhos.Enologos join Vinhos.VinhosAssociados on Vinhos.Enologos.NSocioEnologo=Vinhos.VinhosAssociados.Enologo_ID JOIN Vinhos.Vinho on Vinhos.VinhosAssociados.Vinho_ID=Vinhos.Vinho.ID where Vinhos.Enologos.NSocioEnologo=@ID );
+go
 
 
 --################################################
 -- Procedures
 --################################################
+
+--################################################
+-- GET Premios por concurso
+--################################################
+go
+CREATE PROCEDURE Vinhos.ConcursoPremios(@ID int)
+as 
+	select Vinhos.Concursos.*, Vinhos.Posicoes.PosicoesNu,Vinhos.Vinho.Nome as VinhoNome,Vinhos.Vinho.ID as VinhoID from Vinhos.Concursos join Vinhos.Posicoes on Vinhos.Concursos.ID=Vinhos.Posicoes.CodigoConcurso join Vinhos.Vinho on Vinhos.Vinho.ID=Vinhos.Posicoes.VinhoID where Vinhos.Concursos.ID=@ID order by Vinhos.Posicoes.PosicoesNu asc;
+go
+
 --################################################
 -- Insert Casta
 --################################################
@@ -920,4 +963,20 @@ insert into Vinhos.SaoJuri values
 (11117,3);
 
 
+INSERT into Vinhos.Posicoes VALUES
+(1,1,2),
+(2,1,15),
+(3,1,5),
+(1,2,10),
+(2,2,14),
+(3,2,3),
+(1,3,5),
+(2,3,4),
+(3,3,6),
+(1,4,3),
+(2,4,5),
+(3,4,7),
+(1,5,10),
+(2,5,8),
+(3,5,15);
 
