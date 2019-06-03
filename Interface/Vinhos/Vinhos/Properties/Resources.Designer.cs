@@ -93,9 +93,49 @@ namespace Vinhos.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AibKGkpbT {
+            get {
+                object obj = ResourceManager.GetObject("AibKGkpbT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap asdasdasdasd {
+            get {
+                object obj = ResourceManager.GetObject("asdasdasdasd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap farm_landscape_vector_illustration_5a2dd43f71fde5_8367673215129528954669 {
             get {
                 object obj = ResourceManager.GetObject("farm-landscape-vector-illustration-5a2dd43f71fde5.8367673215129528954669", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap taca {
+            get {
+                object obj = ResourceManager.GetObject("taca", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap taca1 {
+            get {
+                object obj = ResourceManager.GetObject("taca1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
