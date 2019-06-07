@@ -15,7 +15,7 @@ namespace Vinhos
     public partial class Form7 : Form
     {
         int s;
-        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=tcp:mednat.ieeta.pt\\SQLSERVER,8101;DATABASE=p8g6;UID=p8g6;PASSWORD=123Joao@Bruno";
         SqlConnection cn;
         public Form7( int i)
         {
@@ -108,6 +108,11 @@ namespace Vinhos
             form.FormClosing += delegate { update(); this.Show(); };
             form.Show();
             this.Hide();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -159,7 +159,7 @@
             this.richTextBox18.BackColor = System.Drawing.Color.Silver;
             this.richTextBox18.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox18.Location = new System.Drawing.Point(172, 279);
+            this.richTextBox18.Location = new System.Drawing.Point(195, 279);
             this.richTextBox18.Name = "richTextBox18";
             this.richTextBox18.ReadOnly = true;
             this.richTextBox18.Size = new System.Drawing.Size(25, 26);
@@ -172,7 +172,7 @@
             this.richTextBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox17.Location = new System.Drawing.Point(115, 274);
             this.richTextBox17.Name = "richTextBox17";
-            this.richTextBox17.Size = new System.Drawing.Size(51, 31);
+            this.richTextBox17.Size = new System.Drawing.Size(74, 31);
             this.richTextBox17.TabIndex = 35;
             this.richTextBox17.Text = "";
             this.richTextBox17.TextChanged += new System.EventHandler(this.richTextBox17_TextChanged);

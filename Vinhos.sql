@@ -1,9 +1,4 @@
---drop database VinhosDatabase;
-go
-create database VinhosDatabase;
-go
-use VinhosDatabase;
---use aula9;
+use p8g6;
 go
 create schema Vinhos;
 --drop schema Vinhos;
@@ -284,6 +279,27 @@ go
 create function Vinhos.getQuintaByReg (@ID int) returns table 
 as 
     return (Select Vinhos.Quinta.Nome, Vinhos.Quinta.ID from Vinhos.Quinta where Vinhos.Quinta.RegiaoID=@ID);
+go
+
+
+--################################################
+-- Get all info from Distribuidor
+--################################################
+
+create function Vinhos.GetDis(@ID int) returns table
+as 
+	return(select * from Vinhos.Distribuidor where Vinhos.Distribuidor.ID=@ID);
+go
+
+--################################################
+-- Get all Distribuidores from a quinta
+--################################################
+
+create function Vinhos.GetDistQuinta(@ID int) returns table
+as 
+	return(select Vinhos.Distribui.DistribuiID, Vinhos.Distribuidor.Nome 
+			from Vinhos.Distribui,Vinhos.Distribuidor 
+			 where Vinhos.Distribui.DistribuiID=Vinhos.Distribuidor.ID and Vinhos.Distribui.QuintaID=@ID);
 go
 
 

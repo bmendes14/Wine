@@ -91,3 +91,4 @@ C:\Users\Staples\Desktop\Nova pasta\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinho
 C:\Users\Staples\Desktop\Nova pasta\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form16.resources
 C:\Users\Staples\Desktop\Nova pasta\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form17.resources
 C:\Users\Staples\Desktop\Nova pasta\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form18.resources
+C:\Users\Staples\Desktop\Nova pasta\Wine\Interface\Vinhos\Vinhos\obj\Debug\Vinhos.Form19.resources

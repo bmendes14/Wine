@@ -14,7 +14,7 @@ namespace Vinhos
     public partial class Form16 : Form
     {
         int id;
-        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=tcp:mednat.ieeta.pt\\SQLSERVER,8101;DATABASE=p8g6;UID=p8g6;PASSWORD=123Joao@Bruno";
         SqlConnection cn;
 
 

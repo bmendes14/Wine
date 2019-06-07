@@ -14,7 +14,7 @@ namespace Vinhos
     public partial class Form3 : Form
     {
         int s;
-        private String sa = "data source=JOAOECT\\SQLEXPRESS;integrated security=true;initial catalog=VinhosDatabase";
+        private String sa = "data source=tcp:mednat.ieeta.pt\\SQLSERVER,8101;DATABASE=p8g6;UID=p8g6;PASSWORD=123Joao@Bruno";
         SqlConnection cn;
         private String nome;
         private int alccol;
@@ -82,7 +82,59 @@ namespace Vinhos
             {
                 cn.Close();
             }
+
+
+            command.CommandText = "select * from Vinhos.GetDistQuinta(@ID)";
+            command.Parameters.Clear();
+            command.Parameters.Add("@ID", SqlDbType.Int);
+            command.Parameters["@ID"].Value = QuintaID;
+            command.Connection = cn;
+            cn.Open();
+            try
+            {
+                command.ExecuteNonQuery();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int x = 32;
+                    while (reader.Read())
+                    {
+                       addButton(reader.GetInt32(0), reader.GetString(1),x);
+                        x = x + 130;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to load");
+            }
+            finally
+            {
+                cn.Close();
+            }
                          
+        }
+
+        private void addButton(int id, String name, int x)
+        {
+            Button btn = new Button();
+            btn.Size = new Size(120, 44);
+            btn.Location = new Point(x, 345);
+            btn.Text = name;
+            btn.BackColor = Color.White;
+
+            btn.Click += (sender, args) =>
+            {
+                Form19 form = new Form19(id);
+                form.Location = this.Location;
+                form.StartPosition = FormStartPosition.Manual;
+                form.FormClosing += delegate { this.Show(); };
+                form.Show();
+                this.Hide();
+            };
+
+
+            panel1.Controls.Add(btn);
         }
 
         private void button2_Click(object sender, EventArgs e)
