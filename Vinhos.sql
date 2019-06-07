@@ -162,12 +162,7 @@ create table Vinhos.Posicoes(
 --################################################
 --              Funtions
 --################################################
--- Get all Names from Wines
--- GO
--- CREATE PROCEDURE Vinhos.WineList1
--- AS
--- SELECT Nome FROM Vinhos.Vinho;
--- go
+
 go
 create function Vinhos.WineList() returns table 
 as
@@ -180,12 +175,7 @@ go
 --###############################################
 -- Get all the names, id of all  Wine 
 --###############################################
--- GO
--- CREATE PROCEDURE Vinhos.WineName1
--- AS
--- SELECT Nome,ID FROM Vinhos.Vinho;
--- go
--- exec Vinhos.WineName
+
 go
 create function Vinhos.WineName() returns table
 as 
@@ -197,11 +187,7 @@ go
 --###############################################
 -- Get all the info from a determinated Wine ID
 --###############################################
--- go 
--- create Procedure Vinhos.WineCaracteristics (@ID int)
--- as
--- Select Vinhos.Vinho.*,Vinhos.Quinta.Nome, Vinhos.Regiao.Nome from ((Vinhos.Vinho join Vinhos.Quinta on Vinhos.Vinho.QuintaID = Vinhos.Quinta.ID) join Vinhos.Regiao on Vinhos.Vinho.RegiaoID = Vinhos.Regiao.ID ) where Vinhos.Vinho.ID = @ID ;
--- go
+
 
 --declare @id int = 1;
 --print @id
@@ -218,11 +204,7 @@ go
 --################################################
 -- Get number of wines in our database
 --################################################
--- go 
--- create Procedure Vinhos.CountWines
--- as
--- Select count(*) from Vinhos.Vinho;
--- go
+
 go
 create function Vinhos.CountWines() returns table
 as 
@@ -234,10 +216,7 @@ go
 --################################################
 -- Get name of a determinated wine in our database
 --################################################
--- create Procedure Vinhos.getRandom(@ID int)
--- as 
--- Select Vinhos.Vinho.Nome from Vinhos.Vinho where Vinhos.Vinho.ID = @ID
--- go
+
 go
 create function Vinhos.getRandom(@ID int) returns table
 as 
@@ -306,13 +285,7 @@ go
 --################################################
 -- Get all info from Quintas
 --################################################
--- GO
--- CREATE PROCEDURE Vinhos.QuintaInfo(@ID int)
--- as
--- select Vinhos.Quinta.*,Vinhos.Regiao.Nome,Vinhos.Owner.Nome,Vinhos.Owner.ID from ((Vinhos.Quinta join Vinhos.Regiao on Vinhos.Quinta.RegiaoID=Vinhos.Regiao.ID) join Vinhos.OwnerShip on Vinhos.Quinta.ID = Vinhos.OwnerShip.Quinta_ID)
--- join Vinhos.Owner on Vinhos.OwnerShip.Owner_ID = Vinhos.Owner.ID
---  where Vinhos.Quinta.ID=@ID;
--- go
+
 
 -- exec Vinhos.QuintaInfo 'ID';
 create function Vinhos.QuintaInfo(@ID int) returns table
@@ -328,12 +301,7 @@ go
 --################################################
 -- Get all names and id from Quintas
 --################################################
--- GO
--- CREATE PROCEDURE Vinhos.QuintaName
--- as
--- select Nome,ID from Vinhos.Quinta;
--- go
---EXEC Vinhos.QuintaName;
+
 go
 create function Vinhos.QuintaName() returns table
 as 
@@ -344,11 +312,7 @@ go
 --################################################
 -- Get all names and id from Regiao
 --################################################
--- GO
--- CREATE PROCEDURE Vinhos.RegiaoName
--- as
--- select Nome,ID from Vinhos.Regiao;
--- go
+
 go
 create function Vinhos.RegiaoName() returns table
 as 
@@ -360,11 +324,6 @@ go
 --################################################
 -- Get all info from Regiao
 --################################################
--- GO
--- CREATE PROCEDURE Vinhos.RegiaoInfo(@ID INT)
--- as
--- select * from Vinhos.Regiao where Vinhos.Regiao.ID=@ID;
--- go
 
 --exec Vinhos.RegiaoInfo 1;
 go
@@ -378,11 +337,7 @@ go
 --################################################
 -- Get all info from Owner
 --################################################
--- GO
--- CREATE PROCEDURE Vinhos.OwnerInfo(@ID INT)
--- as
--- select * from Vinhos.Owner where Vinhos.Owner.ID=@ID;
--- go
+
 go
 create function Vinhos.OwnerInfo(@ID INT) returns table
 as 
@@ -586,15 +541,6 @@ go
 
 
 
--- exec Vinhos.InsertRegiao 'ola','ola','ola','ola'
--- exec Vinhos.InsertQuinta 'ola','ola',100,'ola','ola','8'
-
--- exec Vinhos.DeleteRegiao 8
--- exec Vinhos.DeleteQuinta 13
--- select * from Vinhos.Regiao;
--- select * from Vinhos.Quinta;
-
-
 
 --################################################
 -- Insert Enologo
@@ -692,6 +638,35 @@ begin
 		begin
 			insert into Vinhos.Enologos SELECT * FROM #TEMP WHERE NSocioEnologo=@NSocioEnologo;
 			DELETE #TEMP WHERE NSocioEnologo=@NSocioEnologo;
+		end
+	end	
+end
+go
+
+go
+CREATE TRIGGER Vinhos.ValidateTem ON Vinhos.Tem
+INSTEAD OF UPDATE,INSERT
+as
+begin
+	Select *
+	Into   #Temp
+	From   inserted
+
+	WHILE (SELECT count(*) FROM #Temp) >0
+	begin
+		DECLARE @CastaID as int;
+		DECLARE @VinhoID as int;
+		SELECT TOP 1 @CastaID = CastasID FROM #Temp;
+		Select top 1 @VinhoID = VinhoID FROM #Temp
+		if  (SELECT count(*) FROM Vinhos.Tem WHERE Vinhos.Tem.CastasID=@CastaID and Vinhos.Tem.VinhoId=@VinhoID) > 0
+		begin
+			DELETE #TEMP WHERE CastasID=@CastaID and VinhoId=@VinhoID;
+			RAISERROR('We already have that realtion', 16, 1);
+		end
+		ELSE
+		begin
+			insert into Vinhos.Tem SELECT * FROM #TEMP WHERE CastasID=@CastaID and VinhoId=@VinhoID;
+			DELETE #TEMP WHERE CastasID=@CastaID and VinhoId=@VinhoID;
 		end
 	end	
 end
